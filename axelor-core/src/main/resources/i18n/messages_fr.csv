@@ -1,0 +1,871 @@
+"key","message","comment","context"
+"<i class=""fa fa-exclamation-triangle"" aria-hidden=""true""></i> The scheduler service is disabled.","<i class=""fa fa-exclamation-triangle"" aria-hidden=""true""></i> Le service de planificateur est désactivé.",,"resources\views\Schedules.xml:19"
+"Access error","Erreur d'accès",,"java\com\axelor\rpc\ResponseInterceptor.java:126"
+"Action","Action",,"resources\domains\Meta.xml:109
+resources\domains\Meta.xml:138
+resources\domains\MetaJson.xml:80
+resources\views\Group.xml:28
+resources\views\Meta.xml:202
+resources\views\User.xml:29"
+"Action Menu","Action de menu",,"resources\views\Meta.xml:299"
+"Action Menus","Les Action Menus",,"resources\views\Menu.xml:113
+resources\views\Menu.xml:115
+resources\views\Meta.xml:287"
+"Action name can't be changed.","Le nom de l'action ne peut pas être changé.",,"java\com\axelor\meta\web\MetaController.java:116"
+"Actions","Les Actions",,"resources\views\Menu.xml:98"
+"Activate on","Autoriser à partir de",,"resources\domains\User.xml:28"
+"Activate the user from the specified date.","Active l'utilisateur à partir de la date spécifiée.",,"resources\domains\User.xml:28"
+"Active","Actif",,"resources\domains\MetaPermission.xml:12
+resources\domains\MetaSchedule.xml:19
+resources\domains\Team.xml:51"
+"Address","Adresse",,"resources\domains\Mail.xml:12"
+"Administration","Administration",,"resources\views\Menu.xml:6"
+"All Actions","Les Actions",,"resources\views\Menu.xml:96
+resources\views\Meta.xml:193"
+"All Charts","Les Graphiques",,"resources\views\Menu.xml:159
+resources\views\Menu.xml:161
+resources\views\Meta.xml:133"
+"All Custom Views","Toutes les vues personnalisées",,"resources\views\Menu.xml:78
+resources\views\Menu.xml:80"
+"All Documents","Tous les fichiers",,"resources\views\DMS.xml:163
+resources\views\DMS.xml:208"
+"All Menu Help","Aide de tous les menus",,"resources\views\Meta.xml:460"
+"All Menus","Les Menus",,"resources\views\Menu.xml:87"
+"All Models","Les Modèles",,"resources\views\Menu.xml:60"
+"All Modules","Les Modules",,"resources\views\Menu.xml:51
+resources\views\Meta.xml:76"
+"All Schedules","Les Planificateurs",,"resources\views\Menu.xml:170
+resources\views\Menu.xml:172"
+"All Selects","Les Sélections",,"resources\views\Menu.xml:104
+resources\views\Meta.xml:313"
+"All Teams","Toutes les équipes",,"resources\views\Team.xml:140
+resources\views\Team.xml:211"
+"All Translations","Les Traductions",,"resources\views\Menu.xml:122
+resources\views\Menu.xml:124
+resources\views\Meta.xml:411"
+"All View Help","Aide de toutes les vues",,"resources\views\Meta.xml:428"
+"All Views","Les Vues",,"resources\views\Menu.xml:69
+resources\views\Meta.xml:117"
+"All jobs have been restarted.","Toutes les instances ont été redémarrées.",,"java\com\axelor\meta\web\JobController.java:68"
+"All the customizations will be lost. Are you sure?","Tous les changements seront perdus. Voulez-vous continuer ?",,"resources\views\Meta.xml:119"
+"All views have been restored (%s).","Toutes les vues ont été restaurées (%s).",,"java\com\axelor\meta\web\MetaController.java:259"
+"Allow","Autorisations",,"resources\views\Permission.xml:26"
+"Amber","Ambre",,"resources\views\Meta.xml:65"
+"An unique permission name.","Nom unique de la permission",,"resources\domains\Permission.xml:13"
+"Application","Application",,"resources\domains\Meta.xml:19"
+"Archived","Archivé",,"resources\views\Mail.xml:38
+resources\views\Mail.xml:65
+resources\views\Mail.xml:79"
+"Assigned to","Assigné à",,"resources\domains\Team.xml:30"
+"Attached to","Attaché à",,"resources\views\DMS.xml:150"
+"Attributes","Attributs",,"resources\views\Team.xml:102"
+"Attrs","Attrs",,"resources\domains\MetaJson.xml:90
+resources\domains\Team.xml:31"
+"Author","Auteur",,"resources\domains\Mail.xml:24"
+"Authorization","Autorisation",,"resources\views\User.xml:34"
+"Authorized roles","Rôles autorisés",,"resources\domains\Team.xml:12"
+"Black","Noir",,"resources\views\Meta.xml:71"
+"Block the user","Bloquer l’utilisateur",,"resources\domains\User.xml:27"
+"Block the user for an indefinite period.","Bloquer l’utilisateur pour une période indéterminée.",,"resources\domains\User.xml:27"
+"Blue","Bleu",,"resources\views\Meta.xml:57"
+"Blue Grey","Bleu-gris",,"resources\views\Meta.xml:70"
+"Body","Corps",,"resources\domains\Mail.xml:33"
+"Boolean","Booléen",,"resources\views\MetaJson.xml:10"
+"Brown","Marron",,"resources\views\Meta.xml:68"
+"Button","Bouton",,"resources\views\MetaJson.xml:16"
+"Calendar","Calendrier",,"resources\views\Meta.xml:12"
+"Can customize","Peut personnaliser",,"resources\domains\Group.xml:31"
+"Can read","Peut lire",,"resources\views\DMS.xml:80"
+"Can share","Peut partager",,"resources\domains\Group.xml:32
+resources\views\DMS.xml:82"
+"Can write","Peut écrire",,"resources\views\DMS.xml:81"
+"Canceled","Annulé",,"resources\views\Team.xml:10"
+"Cannot delete a task while scheduler is running...","Impossible de supprimer la tâche pendant l'exécution du planificateur...",,"java\com\axelor\quartz\JobRunner.java:268"
+"Cards","Cartes",,"resources\views\Meta.xml:14"
+"Category","Catégorie",,"resources\domains\Meta.xml:134"
+"Category name to group action menus.","Nom de la catégorie pour grouper les actions menus",,"resources\domains\Meta.xml:134"
+"Change password?","Changer mot de passe ?",,"resources\views\User.xml:39
+resources\views\User.xml:70"
+"Chart","Graphique",,"resources\views\Meta.xml:10"
+"Client side js expression","Expression js côté client",,"resources\views\MetaPermission.xml:33
+resources\views\MetaPermission.xml:34"
+"Closed","Fermé",,"resources\views\Team.xml:9"
+"Code","Code",,"resources\domains\DMS.xml:32
+resources\domains\Group.xml:13"
+"Code length should be greater than 2.","La longueur de l'identifiant doit être supérieur à 2",,"resources\views\Group.xml:47
+resources\views\User.xml:82"
+"Collapse","Regrouper",,"resources\views\Group.xml:9"
+"Color","Couleur",,"resources\domains\Meta.xml:194"
+"Column sequence","Séquence de colonne",,"resources\domains\MetaJson.xml:44"
+"Come back later. There are no messages in this folder...","Revenez plus tard. Il n’y a aucun message dans ce dossier…",,"resources\views\Mail.xml:19
+resources\views\Mail.xml:30
+resources\views\Mail.xml:41"
+"Comma separated list of params for the condition.","Liste de paramètres séparée par des virgules",,"resources\domains\Permission.xml:21"
+"Comment","Commentaire",,"resources\views\Mail.xml:9"
+"Computed","Calculé",,"resources\domains\Meta.xml:37"
+"Concurrent updates error","Modification concurrente détectée",,"java\com\axelor\rpc\ResponseInterceptor.java:164"
+"Condition","Condition",,"resources\domains\Meta.xml:255
+resources\domains\Permission.xml:20
+resources\views\Permission.xml:33
+resources\views\Permission.xml:34"
+"Condition params","Paramètres",,"resources\domains\Permission.xml:21"
+"Condition to check","Condition à vérifier",,"resources\domains\Meta.xml:115"
+"Conditions","Conditions",,"resources\views\MetaJson.xml:72
+resources\views\MetaPermission.xml:32"
+"Configuration","Configuration",,"resources\views\DMS.xml:211"
+"Confirm new password","Confirmer le nouveau mot de passe",,"resources\views\User.xml:45
+resources\views\User.xml:75"
+"Confirm new password of the user (must be identical to the new password)","Confirmer le nouveau mot de passe de l’utilisateur (doit être identique au nouveau mot de passe)",,"resources\views\User.xml:45
+resources\views\User.xml:75"
+"Confirm password","Confirmer le mot de passe",,"resources\views\User.xml:50"
+"Confirm password of the new user (must be identical to the password)","Confirmer le mot de passe du nouvel utilisateur (doit être identique au mot de passe)",,"resources\views\User.xml:50"
+"Content","Contenu",,"resources\domains\DMS.xml:27
+resources\views\DMS.xml:180"
+"Content type","Type de contenu",,"resources\domains\DMS.xml:28"
+"Context field","Champ de contexte",,"resources\domains\MetaJson.xml:27"
+"Context field target","Cible de champ de contexte",,"resources\domains\MetaJson.xml:28"
+"Context field target name","Nom de cible de champ de contexte",,"resources\domains\MetaJson.xml:29"
+"Context field title","Titre de champ de contexte",,"resources\domains\MetaJson.xml:31"
+"Context field value","Valeur de champ de contexte",,"resources\domains\MetaJson.xml:30"
+"Create","Création",,"resources\domains\Permission.xml:17"
+"Created","Créé",,"resources\views\DMS.xml:35"
+"Created by","Créé par",,"java\com\axelor\auth\db\AuditableModel.java:45"
+"Created on","Créé le",,"java\com\axelor\auth\db\AuditableModel.java:39"
+"Cron","Cron",,"resources\domains\MetaSchedule.xml:23"
+"Current password","Mot de passe actuel",,"resources\views\User.xml:72"
+"Current password of the logged in user","Mot de passe actuel de l’utilisateur connecté",,"resources\views\User.xml:41"
+"Current password of the user","Mot de passe actuel de l’utilisateur",,"resources\views\User.xml:72"
+"Custom","Personnalisé",,"resources\views\Meta.xml:16"
+"Custom Fields","Champs personnalisés",,"resources\views\MetaJson.xml:198
+resources\views\MetaJson.xml:218"
+"Custom Models","Modèles personnalisés",,"resources\views\MetaJson.xml:195
+resources\views\MetaJson.xml:211"
+"Custom field","Champ personnalisé",,"resources\views\MetaJson.xml:113
+resources\views\MetaJson.xml:134
+resources\views\MetaJson.xml:35"
+"Custom fields","Champs personnalisés",,"resources\views\MetaJson.xml:28"
+"Custom model","Modèle personnalisé",,"resources\views\MetaJson.xml:152"
+"Custom models","Modèles personnalisés",,"resources\views\MetaJson.xml:147"
+"Custom-ManyToMany","Custom-ManyToMany",,"resources\views\MetaJson.xml:24"
+"Custom-ManyToOne","Custom-ManyToOne",,"resources\views\MetaJson.xml:23"
+"Custom-OneToMany","Custom-OneToMany",,"resources\views\MetaJson.xml:25"
+"Cyan","Cyan",,"resources\views\Meta.xml:59"
+"Dashboard","Dashboard",,"resources\views\Meta.xml:11"
+"Data","Données",,"resources\domains\Meta.xml:195"
+"Date","Date",,"resources\views\MetaJson.xml:12"
+"DateTime","DateTime",,"resources\views\MetaJson.xml:11"
+"Decimal","Décimal",,"resources\views\MetaJson.xml:9"
+"Deep Orange","Orange foncé",,"resources\views\Meta.xml:67"
+"Deep Purple","Violet foncé",,"resources\views\Meta.xml:55"
+"Default","Défaut",,"resources\views\DMS.xml:126
+resources\views\Meta.xml:37"
+"Default home action.","Action par défaut.",,"resources\domains\Group.xml:16"
+"Default value","Valeur par défaut",,"resources\domains\MetaJson.xml:13"
+"Dependent features","Fonctionnalités dépendantes",,"resources\domains\Meta.xml:44"
+"Dependent modules","Modules dépendants",,"resources\domains\Meta.xml:43"
+"Depends","Dépend de",,"resources\domains\Meta.xml:18"
+"Depends On","Dépend de",,"resources\views\Meta.xml:102"
+"Description","Description",,"resources\domains\Meta.xml:15
+resources\domains\Meta.xml:225
+resources\domains\Meta.xml:268
+resources\domains\MetaSchedule.xml:21
+resources\domains\Role.xml:13
+resources\domains\Team.xml:10
+resources\domains\Team.xml:20
+resources\domains\Team.xml:50
+resources\views\Meta.xml:105
+resources\views\Meta.xml:402"
+"Details","Détails",,"resources\views\DMS.xml:25"
+"Directories","Répertoires",,"resources\views\DMS.xml:59"
+"Directory","Répertoire",,"resources\views\DMS.xml:31
+resources\views\DMS.xml:63"
+"Disable the user from the specified date.","Bloque l'utilisateur à partir de la date spécifiée.",,"resources\domains\User.xml:29"
+"Document","Document",,"resources\views\DMS.xml:17
+resources\views\DMS.xml:176
+resources\views\DMS.xml:191"
+"Documents","Documents",,"resources\views\DMS.xml:206
+resources\views\DMS.xml:7"
+"Domain","Domaine",,"resources\domains\MetaJson.xml:53"
+"Domain filter as condition.","Condition d'application des accès",,"resources\domains\Permission.xml:20"
+"Download","Télécharger",,"resources\views\DMS.xml:20"
+"Email","Email",,"resources\domains\Mail.xml:73
+resources\domains\User.xml:20
+resources\views\Mail.xml:8"
+"Encryption error","Erreur de chiffrement",,"java\com\axelor\rpc\ResponseInterceptor.java:214"
+"Encryption key might be wrong.","La clé de cryptage peut être incorrecte.",,"java\com\axelor\rpc\ResponseInterceptor.java:212"
+"English","Anglais",,"resources\views\User.xml:7"
+"Enum","Enum",,"resources\views\MetaJson.xml:15"
+"Enum type","Type d’enum",,"resources\domains\MetaJson.xml:50"
+"Expires on","Autoriser jusqu'au",,"resources\domains\User.xml:29"
+"Export","Export",,"resources\domains\MetaPermission.xml:21
+resources\domains\Permission.xml:19
+resources\views\Meta.xml:413"
+"Export complete.","Export complet.",,"java\com\axelor\meta\schema\actions\ActionExport.java:154
+java\com\axelor\meta\schema\actions\ActionExport.java:157
+java\com\axelor\meta\web\MetaController.java:329"
+"Extension","Extension",,"resources\domains\Meta.xml:40"
+"Favorite","Favori",,"resources\views\Meta.xml:242"
+"Favorites","Favoris",,"resources\views\Meta.xml:236
+resources\views\Meta.xml:250"
+"Field","Champ",,"resources\domains\Meta.xml:240
+resources\domains\Meta.xml:252
+resources\domains\MetaPermission.xml:18
+resources\views\Meta.xml:392"
+"Field is required.","Champ requis.",,"java\com\axelor\meta\schema\actions\ActionCondition.java:110"
+"Fields","Champs",,"resources\domains\Meta.xml:209
+resources\domains\MetaJson.xml:83
+resources\views\Meta.xml:384"
+"File","Fichier",,"resources\domains\DMS.xml:39
+resources\domains\Meta.xml:283
+resources\views\Meta.xml:511"
+"File added","Fichier ajouté",,"java\com\axelor\dms\db\repo\DMSFileRepository.java:131"
+"File name","Nom du fichier",,"resources\domains\DMS.xml:9
+resources\domains\Meta.xml:264"
+"File path","Chemin du fichier",,"resources\domains\Meta.xml:265"
+"File removed","Fichier supprimé",,"java\com\axelor\dms\db\repo\DMSFileRepository.java:131"
+"File type","Type",,"resources\domains\Meta.xml:267"
+"Files","Fichiers",,"resources\views\Meta.xml:501
+resources\views\Meta.xml:509"
+"Filter custom","Filtre personnalisé",,"resources\domains\MetaFilter.xml:17"
+"Filter files","Filtrer les fichiers",,"resources\views\DMS.xml:149"
+"Filter view","Filtre de vue",,"resources\domains\MetaFilter.xml:18"
+"Filters","Filtres",,"resources\domains\MetaFilter.xml:16
+resources\views\Meta.xml:18"
+"Flags","Drapeaux",,"resources\domains\Mail.xml:46"
+"Following modules will be installed : <p>%s</p> Are you sure ?","Les modules suivant seront installés : <p>%s</p> Voulez-vous continuer ?",,"java\com\axelor\meta\web\ModuleController.java:42"
+"Following modules will be uninstalled : <p>%s</p> Are you sure ?","Les modules suivant seront déinstallés : <p>%s</p> Voulez-vous continuer ?",,"java\com\axelor\meta\web\ModuleController.java:44"
+"Force password change","Forcer à changer de mot de passe",,"resources\domains\User.xml:17"
+"Force the user to change their password at next login.","Forcer l’utilisateur à changer de mot de passe à la prochaine connexion.",,"resources\domains\User.xml:17"
+"Form","Formulaire",,"resources\views\Meta.xml:8"
+"Form record","Enregistrement de formulaire",,"resources\views\MetaJson.xml:187"
+"Form records","Enregistrements de formulaire",,"resources\views\MetaJson.xml:182"
+"Form view","Vue formulaire",,"resources\domains\MetaJson.xml:51
+resources\domains\MetaJson.xml:82"
+"Form width","Largeur du formulaire",,"resources\domains\MetaJson.xml:70"
+"French","Français",,"resources\views\User.xml:8"
+"From","De",,"resources\domains\Mail.xml:27"
+"Fullname","Nom complet",,"resources\domains\Meta.xml:210"
+"Fully qualified object name or wild card package name.","Nom de l'objet",,"resources\domains\Permission.xml:14"
+"Gantt","Gantt",,"resources\views\Meta.xml:13"
+"General","Général",,"resources\views\DMS.xml:93
+resources\views\Meta.xml:257"
+"Green","Vert",,"resources\views\Meta.xml:61"
+"Grey","Gris",,"resources\views\Meta.xml:69"
+"Grid","Liste",,"resources\views\Meta.xml:7"
+"Grid view","Vue liste",,"resources\domains\MetaJson.xml:52
+resources\domains\MetaJson.xml:81"
+"Group","Groupe",,"resources\domains\DMS.xml:40
+resources\domains\User.xml:31
+resources\views\Group.xml:18"
+"Group by","Grouper par",,"resources\domains\MetaJson.xml:72"
+"Groups","Les Groupes",,"resources\domains\Meta.xml:112
+resources\domains\Meta.xml:41
+resources\views\Group.xml:12
+resources\views\Menu.xml:23
+resources\views\Menu.xml:26"
+"Help","Aide",,"resources\domains\Meta.xml:245
+resources\domains\MetaJson.xml:20
+resources\views\Meta.xml:455
+resources\views\Meta.xml:472"
+"Help Management","Gestion de l’aide",,"resources\views\Menu.xml:10"
+"Help link","Lien aide",,"resources\domains\Meta.xml:39"
+"Hidden","Caché",,"resources\domains\Meta.xml:136
+resources\domains\Meta.xml:197
+resources\domains\MetaJson.xml:33
+resources\views\Group.xml:8"
+"Hidden menu","Menu caché",,"resources\domains\Meta.xml:104"
+"Hide if","Caché si",,"resources\domains\MetaJson.xml:22
+resources\domains\MetaPermission.xml:23"
+"High","Haut",,"resources\views\Team.xml:16"
+"Home action","Action d'accueil",,"resources\domains\Group.xml:16
+resources\domains\User.xml:22"
+"Icon","Icône",,"resources\domains\Meta.xml:193
+resources\domains\Meta.xml:94
+resources\views\MetaJson.xml:165"
+"Icon background","Icône de fond",,"resources\domains\Meta.xml:95
+resources\views\MetaJson.xml:166"
+"Important","Important",,"resources\views\DMS.xml:129
+resources\views\Mail.xml:27
+resources\views\Mail.xml:60
+resources\views\Mail.xml:77
+resources\views\Meta.xml:38"
+"In Progress","En cours",,"resources\views\Team.xml:8"
+"Inbox","Boîte de réception",,"resources\views\Mail.xml:16
+resources\views\Mail.xml:49
+resources\views\Mail.xml:75"
+"Inbox is empty!","La boîte de réception est vide !",,"resources\views\Mail.xml:18"
+"Include if","Inclure si",,"resources\domains\MetaJson.xml:25"
+"Increment","Incrément",,"resources\domains\MetaSequence.xml:16"
+"Indigo","Indigo",,"resources\views\Meta.xml:56"
+"Information","Information",,"resources\views\DMS.xml:130
+resources\views\Meta.xml:42"
+"Initial","Valeur origine",,"resources\domains\MetaSequence.xml:17"
+"Inline","En ligne",,"resources\views\Meta.xml:48"
+"Install","Installer",,"resources\views\Meta.xml:98"
+"Install module","Installer le module",,"resources\views\Meta.xml:84"
+"Installed","Installé ?",,"resources\domains\Meta.xml:21"
+"Integer","Entier",,"resources\views\MetaJson.xml:8"
+"Internal Server Error","Erreur de serveur interne",,"java\com\axelor\rpc\Response.java:154"
+"Invalid XML.","XML invalide.",,"java\com\axelor\meta\web\MetaController.java:88"
+"Invalid cron :","Cron non valide :",,"java\com\axelor\meta\web\JobController.java:52"
+"Invalid field value.","Valeur non valide.",,"java\com\axelor\meta\schema\actions\ActionCondition.java:112"
+"Invalid permission","Permission invalide",,"java\com\axelor\dms\db\repo\DMSPermissionRepository.java:97"
+"Invalid use of action-record: %s, must be the last action.","Utilisation incorrecte de l'action-record :%s, doit être la dernière action.",,"java\com\axelor\meta\schema\actions\ActionGroup.java:78"
+"Inverse","Inverse",,"resources\views\DMS.xml:131
+resources\views\Meta.xml:41"
+"Is archived","Est archivé",,"resources\domains\Mail.xml:59"
+"Is directory","Est un répertoire",,"resources\domains\DMS.xml:10"
+"Is read","Est lu",,"resources\domains\Mail.xml:58"
+"Is starred","Est favori",,"resources\domains\Mail.xml:57"
+"Items","Éléments",,"resources\domains\Meta.xml:179"
+"Job","Job",,"resources\domains\MetaSchedule.xml:22"
+"Job Management","Gestion des planificateurs",,"resources\views\Menu.xml:12"
+"Job has been updated.","Le planificateur a été mis à jour.",,"java\com\axelor\meta\web\JobController.java:59"
+"Json","Json",,"resources\domains\Meta.xml:226"
+"Json model","Modèle Json",,"resources\domains\MetaJson.xml:16
+resources\domains\MetaJson.xml:88"
+"Kanban","Kanban",,"resources\views\Meta.xml:15"
+"Key","Clé",,"resources\domains\Meta.xml:230"
+"Label","Label",,"resources\domains\Meta.xml:222
+resources\views\MetaJson.xml:17"
+"Language","Langue",,"resources\domains\Meta.xml:232
+resources\domains\Meta.xml:242
+resources\domains\User.xml:21"
+"Last modified","Modifié le",,"resources\views\DMS.xml:12"
+"Last password update date","Date de dernière modification du mot de passe",,"resources\domains\User.xml:16"
+"Left menu","Menu à gauche",,"resources\domains\Meta.xml:102"
+"Light Blue","Bleu clair",,"resources\views\Meta.xml:58"
+"Light Green","Vert clair",,"resources\views\Meta.xml:62"
+"Lime","Vert citron",,"resources\views\Meta.xml:63"
+"Link","Lien",,"resources\domains\Meta.xml:106
+resources\views\Team.xml:100"
+"Login","Identifiant",,"resources\domains\User.xml:13"
+"Low","Bas",,"resources\views\Team.xml:14"
+"Mail","Mail",,"resources\views\Mail.xml:72"
+"ManyToMany","ManyToMany",,"resources\views\Meta.xml:381
+resources\views\MetaJson.xml:21"
+"ManyToOne","ManyToOne",,"resources\views\Meta.xml:379
+resources\views\MetaJson.xml:20"
+"Mapped by","Mappé avec",,"resources\domains\Meta.xml:224"
+"Max","Max",,"resources\views\MetaJson.xml:50"
+"Max size","Taille max",,"resources\domains\MetaJson.xml:40"
+"Max size 4MB.","Taille max 4MO.",,"resources\domains\User.xml:19"
+"Members","Membres",,"resources\domains\Team.xml:13"
+"Menu","Menu",,"resources\domains\Meta.xml:238
+resources\domains\MetaJson.xml:73
+resources\views\MetaJson.xml:162"
+"Menu Help","Aide de menu",,"resources\views\Menu.xml:134
+resources\views\Menu.xml:142
+resources\views\Meta.xml:465"
+"Menu Item","Menu Item",,"resources\views\Meta.xml:256"
+"Menu Items","Menu Items",,"resources\views\Meta.xml:216
+resources\views\Meta.xml:222"
+"Menu background","Arrière-plan de menu",,"resources\domains\MetaJson.xml:76"
+"Menu icon","Icône de menu",,"resources\domains\MetaJson.xml:75"
+"Menu order","Ordre de menu",,"resources\domains\Meta.xml:90
+resources\domains\MetaJson.xml:77"
+"Menu parent","Parent du menu",,"resources\domains\MetaJson.xml:74"
+"Menu title","Titre de menu",,"resources\domains\MetaJson.xml:78"
+"Menu top","Haut de menu",,"resources\domains\MetaJson.xml:79"
+"Menus","Les Menus",,"resources\domains\Group.xml:25
+resources\domains\Role.xml:14
+resources\views\Menu.xml:89"
+"Message","Message",,"resources\domains\Mail.xml:36
+resources\domains\Mail.xml:56
+resources\domains\Meta.xml:231"
+"Meta file","Fichier meta",,"resources\domains\DMS.xml:18"
+"Meta model","Modèle",,"resources\domains\Meta.xml:218"
+"Meta permission","Permission meta",,"resources\domains\MetaPermission.xml:17"
+"MetaScheduleParam","MetaScheduleParam",,"resources\views\Schedules.xml:38"
+"Min","Min",,"resources\views\MetaJson.xml:49"
+"Min size","Taille min",,"resources\domains\MetaJson.xml:39"
+"Mobile menu","Menu mobile",,"resources\domains\Meta.xml:103"
+"Model","Objet",,"resources\domains\Meta.xml:155
+resources\domains\Meta.xml:239
+resources\domains\Meta.xml:250
+resources\domains\Meta.xml:34
+resources\domains\Meta.xml:74
+resources\domains\MetaJson.xml:14
+resources\views\Meta.xml:368"
+"Model Management","Gestion des modèles",,"resources\views\Menu.xml:8"
+"Model field","Champ de modèle",,"resources\domains\MetaJson.xml:15"
+"Models","Les Modèles",,"resources\views\Menu.xml:62
+resources\views\Meta.xml:361"
+"Modified","Modifié",,"resources\views\DMS.xml:36"
+"Module","Module",,"resources\domains\Meta.xml:135
+resources\domains\Meta.xml:156
+resources\domains\Meta.xml:178
+resources\domains\Meta.xml:35
+resources\domains\Meta.xml:96
+resources\views\Meta.xml:88
+resources\views\Meta.xml:89"
+"Module Management","Gestion des modules",,"resources\views\Menu.xml:11"
+"Module to check","Module à vérifier",,"resources\domains\Meta.xml:116"
+"Modules","Les Modules",,"resources\views\Menu.xml:53"
+"My Documents","Mes fichiers",,"resources\views\DMS.xml:169
+resources\views\DMS.xml:210"
+"My Teams","Mes équipes",,"resources\views\Team.xml:145
+resources\views\Team.xml:212"
+"My open tasks","Mes tâches ouvertes",,"resources\views\Team.xml:173
+resources\views\Team.xml:207"
+"Name","Nom",,"resources\domains\DMS.xml:33
+resources\domains\Group.xml:14
+resources\domains\Meta.xml:13
+resources\domains\Meta.xml:132
+resources\domains\Meta.xml:152
+resources\domains\Meta.xml:168
+resources\domains\Meta.xml:176
+resources\domains\Meta.xml:206
+resources\domains\Meta.xml:219
+resources\domains\Meta.xml:253
+resources\domains\Meta.xml:30
+resources\domains\Meta.xml:71
+resources\domains\Meta.xml:92
+resources\domains\MetaFilter.xml:14
+resources\domains\MetaJson.xml:65
+resources\domains\MetaJson.xml:89
+resources\domains\MetaJson.xml:9
+resources\domains\MetaPermission.xml:10
+resources\domains\MetaSchedule.xml:10
+resources\domains\MetaSchedule.xml:20
+resources\domains\MetaSequence.xml:12
+resources\domains\Permission.xml:13
+resources\domains\Role.xml:12
+resources\domains\Team.xml:19
+resources\domains\Team.xml:49
+resources\domains\Team.xml:9
+resources\domains\User.xml:14
+resources\views\DMS.xml:23
+resources\views\DMS.xml:65"
+"Name field","Champ de nom",,"resources\domains\MetaJson.xml:36
+resources\domains\MetaJson.xml:69"
+"Name length should be greater than 2.","La longueur du nom doit être supérieur à 2",,"resources\views\Group.xml:43
+resources\views\User.xml:86"
+"Navigation","Navigation",,"resources\domains\Group.xml:15"
+"New","Nouveau",,"resources\views\Team.xml:7"
+"New password","Nouveau mot de passe",,"resources\views\User.xml:44
+resources\views\User.xml:74"
+"New password of the user","Nouveau mot de passe de l’utilisateur",,"resources\views\User.xml:44
+resources\views\User.xml:74"
+"Next","Valeur suivante",,"resources\domains\MetaSequence.xml:18"
+"No archived messages!","Aucun message archivé",,"resources\views\Mail.xml:40"
+"No help","Aucune aide",,"resources\domains\User.xml:25"
+"No important messages!","Aucun message important",,"resources\views\Mail.xml:29"
+"Normal","Normal",,"resources\views\Team.xml:15"
+"Not allowed","Non autorisé",,"resources\domains\Group.xml:30"
+"Object","Objet",,"resources\domains\Meta.xml:282
+resources\domains\MetaPermission.xml:11
+resources\domains\Permission.xml:14"
+"Object name","Nom de l'objet",,"resources\domains\Meta.xml:281"
+"On change","Au changement",,"resources\domains\MetaJson.xml:56"
+"On click","Au clic",,"resources\domains\MetaJson.xml:57"
+"On new","À la création",,"resources\domains\MetaJson.xml:67"
+"On save","À l'enregistrement",,"resources\domains\MetaJson.xml:68"
+"OneToMany","OneToMany",,"resources\views\Meta.xml:380
+resources\views\MetaJson.xml:22"
+"OneToOne","OneToOne",,"resources\views\Meta.xml:378"
+"Only if","Seulement si",,"resources\views\MetaJson.xml:78"
+"Only use this menu-item if the given expression is true (ie `if` condition).","Utiliser uniquement ce menu-item si l'expression donnée est vraie (càd condition `if`)",,"resources\domains\Meta.xml:115"
+"Only use this menu-item if the given module is installed (ie `if-module` condition).","Utiliser uniquement ce menu-item si le module est installé (càd condition `if-module`)",,"resources\domains\Meta.xml:116"
+"Options","Options",,"resources\views\MetaJson.xml:102
+resources\views\MetaJson.xml:37"
+"Orange","Orange",,"resources\views\Meta.xml:66"
+"Order","Ordre",,"resources\domains\Meta.xml:130
+resources\domains\Meta.xml:196
+resources\domains\Meta.xml:256
+resources\views\MetaJson.xml:167"
+"Order by","Trier par",,"resources\domains\MetaJson.xml:71"
+"Overview","Général",,"resources\views\DMS.xml:64
+resources\views\Group.xml:22
+resources\views\Meta.xml:147
+resources\views\Meta.xml:181
+resources\views\Meta.xml:203
+resources\views\Meta.xml:243
+resources\views\Meta.xml:300
+resources\views\Meta.xml:320
+resources\views\Meta.xml:337
+resources\views\Meta.xml:369
+resources\views\Meta.xml:393
+resources\views\Meta.xml:437
+resources\views\Meta.xml:466
+resources\views\Meta.xml:489
+resources\views\Meta.xml:510
+resources\views\MetaJson.xml:114
+resources\views\MetaJson.xml:135
+resources\views\MetaJson.xml:153
+resources\views\MetaJson.xml:188
+resources\views\MetaPermission.xml:12
+resources\views\MetaPermission.xml:26
+resources\views\Permission.xml:22
+resources\views\Role.xml:11
+resources\views\Schedules.xml:21
+resources\views\Schedules.xml:39
+resources\views\Team.xml:117
+resources\views\Team.xml:52
+resources\views\Team.xml:85
+resources\views\User.xml:20"
+"Owner","Propriétaire",,"resources\views\DMS.xml:34"
+"Package","Nom du package",,"resources\domains\Meta.xml:207
+resources\domains\Meta.xml:220"
+"Padding","Remplissage",,"resources\domains\MetaSequence.xml:15"
+"Panel","Panneau",,"resources\views\MetaJson.xml:14"
+"Params","Paramètres",,"resources\domains\MetaSchedule.xml:24
+resources\views\Permission.xml:35"
+"Parent","Parent",,"resources\domains\DMS.xml:11
+resources\domains\Mail.xml:43
+resources\domains\Meta.xml:108
+resources\domains\Meta.xml:137"
+"Parent menu","Menu parent",,"resources\views\MetaJson.xml:164"
+"Password","Mot de passe",,"resources\domains\User.xml:15
+resources\views\User.xml:49"
+"Password doesn't match configured pattern.","Le mot de passe ne correspond pas au motif configuré.",,"resources\views\User.xml:91"
+"Password of the new user","Mot de passe du nouvel utilisateur",,"resources\views\User.xml:49"
+"Pending","En attente ?",,"resources\domains\Meta.xml:22"
+"Permission","Permission",,"resources\domains\DMS.xml:42
+resources\views\DMS.xml:102
+resources\views\DMS.xml:111
+resources\views\DMS.xml:92
+resources\views\Permission.xml:21"
+"Permissions","Les Permissions",,"resources\domains\DMS.xml:21
+resources\domains\Group.xml:22
+resources\domains\Role.xml:15
+resources\domains\User.xml:33
+resources\views\DMS.xml:85
+resources\views\Group.xml:50
+resources\views\Menu.xml:41
+resources\views\Menu.xml:44
+resources\views\MetaPermission.xml:11
+resources\views\MetaPermission.xml:6
+resources\views\Permission.xml:11
+resources\views\Permission.xml:6"
+"Permissions (fields)","Permissions (champs)",,"resources\domains\Group.xml:23
+resources\domains\Role.xml:16
+resources\domains\User.xml:34"
+"Personal","Personnel",,"resources\domains\Mail.xml:13"
+"Personalized View","Vue personnalisée",,"resources\views\Meta.xml:180"
+"Personalized Views","Vues personnalisées",,"resources\views\Meta.xml:170"
+"Photo","Photo",,"resources\domains\Team.xml:11
+resources\domains\User.xml:19"
+"Pink","Rose",,"resources\views\Meta.xml:53"
+"Placeholder","Marque substitutive",,"resources\views\Meta.xml:47"
+"Please change your password.","Veuillez changer votre mot de passe.",,"java\com\axelor\auth\pac4j\AuthPac4jModuleLocal.java:56"
+"Please log back in.","Veuillez vous reconnecter.",,"java\com\axelor\auth\AuthObserver.java:70"
+"Please refresh your browser to see updated views.","Merci de rafraîchir votre navigateur afin d'afficher les mises à jour.",,"java\com\axelor\meta\web\MetaController.java:261"
+"Precision","Précision",,"resources\domains\MetaJson.xml:41"
+"Preferences","Préférences",,"resources\views\User.xml:62"
+"Prefix","Prefix",,"resources\domains\MetaSequence.xml:13"
+"Priority","Priorité",,"resources\domains\Meta.xml:129
+resources\domains\Meta.xml:150
+resources\domains\Meta.xml:177
+resources\domains\Meta.xml:33
+resources\domains\Meta.xml:89
+resources\domains\Team.xml:22"
+"Purple","Violet",,"resources\views\Meta.xml:54"
+"Read","Lecture",,"resources\domains\MetaPermission.xml:19
+resources\domains\Permission.xml:15"
+"Readonly","Lecture seule",,"resources\domains\MetaJson.xml:35"
+"Readonly if","Lecture seule si",,"resources\domains\MetaJson.xml:24
+resources\domains\MetaPermission.xml:22"
+"Recipients","Destinataires",,"resources\domains\Mail.xml:30"
+"Record created","Enregistrement créé",,"java\com\axelor\auth\AuditTracker.java:331"
+"Record updated","Enregistrement modifié",,"java\com\axelor\auth\AuditTracker.java:331"
+"Record was updated or deleted by another transaction","L'enregistrement a été mis à jour ou supprimé par une autre transaction",,"java\com\axelor\rpc\ResponseInterceptor.java:165"
+"Red","Rouge",,"resources\views\Meta.xml:52"
+"Reference error","Erreur de référence",,"java\com\axelor\rpc\ResponseInterceptor.java:245"
+"Regex","Regex",,"resources\domains\MetaJson.xml:46"
+"Related","Lié à",,"resources\domains\DMS.xml:14
+resources\domains\Mail.xml:66
+resources\domains\Team.xml:29"
+"Related document id","Id du document lié",,"resources\domains\Mail.xml:38"
+"Related document model","Model du document lié",,"resources\domains\Mail.xml:39"
+"Related document name","Nom du document lié",,"resources\domains\Mail.xml:40"
+"Related model","Modèle lié",,"resources\domains\Mail.xml:67
+resources\domains\Team.xml:27"
+"Related name","Nom lié",,"resources\domains\Team.xml:28"
+"Related object","Objet lié",,"resources\domains\DMS.xml:15"
+"Relationship","Relation",,"resources\domains\Meta.xml:223"
+"Removable","Supprimable ?",,"resources\domains\Meta.xml:20"
+"Remove","Supprimer",,"resources\domains\Permission.xml:18"
+"Replies","Réponses",,"resources\domains\Mail.xml:44"
+"Required","Requis",,"resources\domains\MetaJson.xml:34"
+"Required if","Requis si",,"resources\domains\MetaJson.xml:23"
+"Restart jobs","Redémarrer",,"resources\views\Schedules.xml:8"
+"Restart the server for updates to take effect.","Redémarrez le serveur pour que les mises à jour prennent effet.",,"java\com\axelor\meta\web\ModuleController.java:40"
+"Restore all…","Tout restaurer…",,"resources\views\Meta.xml:119"
+"Role","Role",,"resources\views\Role.xml:10"
+"Roles","Les Roles",,"resources\domains\Group.xml:21
+resources\domains\Meta.xml:113
+resources\domains\Meta.xml:257
+resources\domains\MetaJson.xml:61
+resources\domains\MetaJson.xml:84
+resources\domains\User.xml:32
+resources\views\Menu.xml:32
+resources\views\Menu.xml:35
+resources\views\Role.xml:6"
+"Root","Racine",,"resources\domains\Mail.xml:42"
+"Rule","Règle",,"resources\views\MetaPermission.xml:25"
+"Rules","Règles",,"resources\domains\MetaPermission.xml:13"
+"SQL error","Erreur SQL",,"java\com\axelor\rpc\ResponseInterceptor.java:255"
+"Scale","Échelle",,"resources\domains\MetaJson.xml:42"
+"Schedule","Planificateur",,"resources\domains\MetaSchedule.xml:12
+resources\views\Schedules.xml:17"
+"Schedules","Planificateurs",,"resources\views\Schedules.xml:6"
+"Schema","Définition",,"resources\views\Meta.xml:165
+resources\views\Meta.xml:188
+resources\views\Meta.xml:211"
+"Search","Recherche",,"resources\views\Meta.xml:17"
+"Select","Sélectionner",,"resources\domains\Meta.xml:198"
+"Select Item","Élément de la sélection",,"resources\views\Meta.xml:336"
+"Selection","Sélection",,"resources\domains\MetaJson.xml:18"
+"Selects","Les Sélections",,"resources\views\Menu.xml:106"
+"Separator","Séparateurs",,"resources\views\MetaJson.xml:19"
+"Sequence","Séquence",,"resources\domains\MetaJson.xml:43
+resources\domains\Team.xml:23"
+"Sequence order","Ordre d'affichage",,"resources\views\Meta.xml:344"
+"Server expression to check whether to use this field.","Expression serveur pour utiliser ce champ ou non",,"resources\views\MetaJson.xml:92"
+"Shared","Partagé ?",,"resources\domains\Meta.xml:77
+resources\domains\MetaFilter.xml:20"
+"Shared with me","Partagés avec moi",,"resources\views\DMS.xml:157"
+"Show Model","Voir le modèle",,"resources\views\Meta.xml:400"
+"Show if","Afficher si",,"resources\domains\MetaJson.xml:21"
+"Show in top menu","Afficher dans le menu du haut",,"resources\views\MetaJson.xml:168"
+"Show permissions","Voir les permissions",,"resources\views\Group.xml:20"
+"Single tab","Onglet unique",,"resources\domains\User.xml:24"
+"Size","Taille",,"resources\domains\Meta.xml:269
+resources\views\DMS.xml:13"
+"Size in bytes","Taille en bytes",,"resources\domains\Meta.xml:266"
+"Spacer","Espace",,"resources\views\MetaJson.xml:18"
+"Specify whether the members of this group are technical staff.","Indiquez si les membres de ce groupe sont des utilisateurs technique.",,"resources\domains\Group.xml:18"
+"Specify whether this action can be used as home action.","Indique si cette action peut être utilisé comme action par défaut.",,"resources\domains\Meta.xml:154"
+"Status","Statut",,"resources\domains\Team.xml:21"
+"Stop service","Arrêter le service",,"resources\views\Schedules.xml:9"
+"String","Chaîne de caractère",,"resources\views\MetaJson.xml:7"
+"Style","Style",,"resources\domains\DMS.xml:34
+resources\domains\Meta.xml:243"
+"Subject","Sujet",,"resources\domains\Mail.xml:32"
+"Subscribe","S'abonner",,"resources\views\Team.xml:41"
+"Success","Réussi",,"resources\views\DMS.xml:127
+resources\views\Meta.xml:39"
+"Suffix","Suffixe",,"resources\domains\MetaSequence.xml:14"
+"Summary","Sommaire",,"resources\domains\Mail.xml:34"
+"System notification","Système de notification",,"resources\views\Mail.xml:10"
+"Table","Table",,"resources\domains\Meta.xml:208"
+"Tag","Tag",,"resources\views\DMS.xml:140
+resources\views\DMS.xml:156
+resources\views\Meta.xml:277"
+"Tag count","Compteur",,"resources\domains\Meta.xml:99"
+"Tag label","Libellé du tag",,"resources\domains\Meta.xml:97"
+"Tag method","Méthode de calcul",,"resources\domains\Meta.xml:98"
+"Tag style","Style de tag",,"resources\domains\Meta.xml:100"
+"Tags","Tags",,"resources\domains\DMS.xml:24
+resources\views\DMS.xml:118
+resources\views\DMS.xml:134
+resources\views\DMS.xml:186
+resources\views\DMS.xml:213
+resources\views\DMS.xml:38"
+"Target custom model","Modèle personnalisé cible",,"resources\views\MetaJson.xml:60"
+"Target json model","Modèle Json cible",,"resources\domains\MetaJson.xml:54"
+"Target model","Modèle cible",,"resources\domains\MetaJson.xml:49"
+"Task","Tâche",,"resources\views\Team.xml:84"
+"Task closed","Tâche fermée",,"resources\domains\Team.xml:42"
+"Task created","Tâche créée",,"resources\domains\Team.xml:41"
+"Task date","Date de tâche",,"resources\domains\Team.xml:24"
+"Task deadline","Date limite de tâche",,"resources\domains\Team.xml:26"
+"Task duration","Durée de tâche",,"resources\domains\Team.xml:25"
+"Tasks","Tâches à réaliser",,"resources\views\Team.xml:202
+resources\views\Team.xml:69
+resources\views\Team.xml:80"
+"Tasks assigned to me","Mes tâches assignées",,"resources\views\Team.xml:181
+resources\views\Team.xml:208"
+"Tasks created by me","Mes tâches soumises",,"resources\views\Team.xml:188
+resources\views\Team.xml:209"
+"Tasks due","Tâches échues",,"resources\views\Team.xml:151
+resources\views\Team.xml:205"
+"Tasks todo","Tâches à réaliser",,"resources\views\Team.xml:162
+resources\views\Team.xml:206"
+"Teal","Bleu canard",,"resources\views\Meta.xml:60"
+"Team","Équipe",,"resources\domains\Team.xml:18
+resources\domains\Team.xml:52
+resources\views\Team.xml:21
+resources\views\Team.xml:51"
+"Teams","Équipes",,"resources\views\Team.xml:203
+resources\views\Team.xml:24
+resources\views\Team.xml:28"
+"Teamwork","Travail d’équipe",,"resources\views\Team.xml:201"
+"Technical staff","Données techniques",,"resources\domains\Group.xml:18"
+"The addition data for UI widgets","Données additionnelles utilisées par l'interface",,"resources\domains\Meta.xml:195"
+"The color to use for tags","La couleur à utiliser pour les tags",,"resources\domains\Meta.xml:194"
+"The image icon to show in UI widgets","Icône utilisée par l'interface",,"resources\domains\Meta.xml:193"
+"The module can't be uninstalled because other modules are pending. Please restart the server before.","Le module ne peut pas être désinstallé car d'autres modules sont en attente. Redémarrer le serveur avant.",,"java\com\axelor\meta\web\ModuleController.java:49"
+"The module can't be uninstalled because other non-removable modules depend on it.","Le module ne peut pas être désinstallé car d'autres modules non supprimable en dépendent.",,"java\com\axelor\meta\web\ModuleController.java:46"
+"The record(s) are referenced by other records, please remove all the references first.","Cet enregistrement est déjà utilisé dans d'autres enregistrements, veuillez d’abord supprimer ces références.",,"java\com\axelor\rpc\ResponseInterceptor.java:248"
+"The record(s) can't be updated as it violates unique constraint.","L'enregistrement ne peut pas être mis à jour car il enfreint la contrainte d'unicité.",,"java\com\axelor\rpc\ResponseInterceptor.java:252"
+"The scheduler service has been stopped.","Le service de planificateur est arrêté.",,"java\com\axelor\meta\web\JobController.java:77
+java\com\axelor\quartz\JobRunner.java:175"
+"The scheduler service is disabled.","Le service de planificateur est désactivé.",,"java\com\axelor\quartz\JobRunner.java:171
+java\com\axelor\quartz\JobRunner.java:197"
+"The select item title","Titre de la sélection",,"resources\domains\Meta.xml:191"
+"The select item value","Valeur de la sélection",,"resources\domains\Meta.xml:192"
+"Theme","Thème",,"resources\domains\User.xml:23"
+"This may terminate any running jobs. Are you sure you want to continue?","Cela va arrêter les instances en cours. Voulez-vous continuer ?",,"resources\views\Schedules.xml:8
+resources\views\Schedules.xml:9"
+"This will update job with current settings. Are you sure you want to continue?","Cela va mettre à jour l’instance avec les paramètres actuels. Voulez-vous continuer ?",,"resources\views\Schedules.xml:29"
+"Time","Heure",,"resources\views\MetaJson.xml:13"
+"Title","Titre",,"resources\domains\Meta.xml:133
+resources\domains\Meta.xml:14
+resources\domains\Meta.xml:191
+resources\domains\Meta.xml:31
+resources\domains\Meta.xml:72
+resources\domains\Meta.xml:93
+resources\domains\MetaFilter.xml:15
+resources\domains\MetaJson.xml:10
+resources\domains\MetaJson.xml:66
+resources\views\MetaJson.xml:163"
+"Tooltip","Info-bulle",,"resources\views\Meta.xml:46"
+"Top menu","Menu du haut",,"resources\domains\Meta.xml:101"
+"Topic","Sujet",,"resources\views\Team.xml:116"
+"Topic closed","Sujet fermé",,"resources\domains\Team.xml:57"
+"Topic created","Sujet créé",,"resources\domains\Team.xml:56"
+"Topic re-opened","Sujet rouvert",,"resources\domains\Team.xml:58"
+"Topics","Sujets",,"resources\domains\Team.xml:14
+resources\views\Team.xml:111
+resources\views\Team.xml:196"
+"Translation","Traduction",,"resources\views\Meta.xml:420
+resources\views\Meta.xml:421"
+"Tree","Arbre",,"resources\views\Meta.xml:9"
+"Type","Type",,"resources\domains\Mail.xml:21
+resources\domains\Meta.xml:153
+resources\domains\Meta.xml:221
+resources\domains\Meta.xml:244
+resources\domains\Meta.xml:32
+resources\domains\Meta.xml:73
+resources\domains\MetaJson.xml:12
+resources\views\DMS.xml:28"
+"Unexpected database error occurred on the server.","Une erreur de base de données est survenue sur le serveur.",,"java\com\axelor\rpc\ResponseInterceptor.java:256"
+"Uninstall","Désinstaller",,"resources\views\Meta.xml:99"
+"Unique constraint violation","Violation de contrainte unique",,"java\com\axelor\rpc\ResponseInterceptor.java:251"
+"Unique message identifier","Identifiant unique de message",,"resources\domains\Mail.xml:36"
+"Unread","Non lus",,"resources\views\Mail.xml:54"
+"Unsubscribe","Se désabonner",,"resources\views\Team.xml:42"
+"Update","Mettre à jour",,"resources\views\Schedules.xml:29"
+"Updated by","Mis à jour par",,"java\com\axelor\auth\db\AuditableModel.java:51"
+"Updated on","Mis à jour le",,"java\com\axelor\auth\db\AuditableModel.java:42"
+"Urgent","Urgent",,"resources\domains\Team.xml:43
+resources\views\Team.xml:17"
+"Used as home action","Utilisable comme action d'accueil",,"resources\domains\Meta.xml:154"
+"User","Utilisateurs",,"resources\domains\DMS.xml:41
+resources\domains\Mail.xml:55
+resources\domains\Mail.xml:70
+resources\domains\Meta.xml:110
+resources\domains\Meta.xml:76
+resources\domains\MetaFilter.xml:21
+resources\views\User.xml:19"
+"User Management","Gestion des utilisateurs",,"resources\views\Menu.xml:7"
+"User preferences","Préférences",,"resources\views\User.xml:63"
+"Users","Les Utilisateurs",,"resources\views\Menu.xml:15
+resources\views\Menu.xml:17
+resources\views\User.xml:11"
+"Valid cron. Next execution dates are:","Cron valide. Les prochaines dates d’exécution sont :",,"java\com\axelor\meta\web\JobController.java:46"
+"Validate","Valider",,"resources\views\Schedules.xml:28"
+"Validation error","Erreur de validation",,"java\com\axelor\rpc\ResponseInterceptor.java:197"
+"Value","Valeur",,"resources\domains\DMS.xml:38
+resources\domains\Meta.xml:192
+resources\domains\Meta.xml:254
+resources\domains\MetaSchedule.xml:11
+resources\views\MetaJson.xml:84"
+"Value Expression","Expression de valeur",,"resources\domains\MetaJson.xml:47
+resources\views\MetaJson.xml:94"
+"Version","Version",,"resources\domains\Meta.xml:16"
+"View","Vue",,"resources\domains\Meta.xml:241
+resources\domains\Meta.xml:251
+resources\views\Meta.xml:146"
+"View Attribute","Attribut de vue",,"resources\views\Meta.xml:488"
+"View Attributes","Attributs de vue",,"resources\views\Menu.xml:150
+resources\views\Menu.xml:152
+resources\views\Meta.xml:478"
+"View Help","Aide des vues",,"resources\views\Menu.xml:131
+resources\views\Menu.xml:136
+resources\views\Meta.xml:436"
+"View Management","Gestion des vues",,"resources\views\Menu.xml:9"
+"View customization","Personnalisation des vues",,"resources\domains\Group.xml:19"
+"View customization permission","Permission de personnalisation des vues",,"resources\domains\Group.xml:29"
+"Views","Les Vues",,"resources\domains\Group.xml:26
+resources\views\Menu.xml:71
+resources\views\Meta.xml:110"
+"Visibility","Visibilité",,"resources\views\Meta.xml:267"
+"Visible","Visible",,"resources\views\Group.xml:7"
+"Visible in grid","Visible dans la liste",,"resources\domains\MetaJson.xml:37"
+"Warning","Attention",,"resources\views\DMS.xml:128
+resources\views\Meta.xml:40"
+"Whether to grant create access.","Autorise un accès en creation",,"resources\domains\Permission.xml:17"
+"Whether to grant export access.","Autorise l'export",,"resources\domains\Permission.xml:19"
+"Whether to grant read access.","Autorise un accès en lecture",,"resources\domains\Permission.xml:15"
+"Whether to grant remove access.","Autorise un accès en suppression",,"resources\domains\Permission.xml:18"
+"Whether to grant write access.","Autorise un accès en modification",,"resources\domains\Permission.xml:16"
+"Whether to show help messages.","Afficher les messages d'aide",,"resources\domains\User.xml:25"
+"Whether to use tabbed ui.","Navigation sans onglets",,"resources\domains\User.xml:24"
+"White","Blanc",,"resources\views\Meta.xml:72"
+"Widget","Widget",,"resources\domains\MetaJson.xml:19"
+"Widget Attributes","Attributs de widget",,"resources\views\MetaJson.xml:109"
+"Widget attrs","Attrs widget",,"resources\domains\MetaJson.xml:59"
+"Write","Modification",,"resources\domains\MetaPermission.xml:20
+resources\domains\Permission.xml:16"
+"Wrong current password","Mauvais mot de passe actuel",,"java\com\axelor\auth\AuthRealm.java:46
+java\com\axelor\auth\pac4j\AuthPac4jModuleLocal.java:55"
+"Wrong username or password","Mauvais identifiant ou mot de passe",,"java\com\axelor\auth\AuthRealm.java:45
+java\com\axelor\auth\pac4j\AuthPac4jModuleLocal.java:54"
+"Xml","Xml",,"resources\domains\Meta.xml:131
+resources\domains\Meta.xml:151
+resources\domains\Meta.xml:157
+resources\domains\Meta.xml:175
+resources\domains\Meta.xml:36
+resources\domains\Meta.xml:38
+resources\domains\Meta.xml:75
+resources\domains\Meta.xml:91"
+"Yellow","Jaune",,"resources\views\Meta.xml:64"
+"You are not allowed to customize views.","Vous n’êtes pas autorisé(e) à personnaliser des vues.",,"java\com\axelor\meta\service\MetaService.java:546
+java\com\axelor\meta\service\MetaService.java:607"
+"You are not allowed to execute this action.","Vous n’êtes pas autorisé(e) à exécuter cette action.",,"java\com\axelor\meta\schema\actions\ActionReport.java:111"
+"You are not allowed to remove this filter","Vous n’êtes pas autorisé(e) à supprimer ce filtre.",,"java\com\axelor\meta\service\MetaFilterService.java:71"
+"You are not allowed to share custom views.","Vous n’êtes pas autorisé(e) à partager des vues personnalisées.",,"java\com\axelor\meta\service\MetaService.java:554"
+"You are not authorized to create this resource.","Vous n’êtes pas autorisé(e) à créer cette ressource.",,"java\com\axelor\db\JpaSecurity.java:29"
+"You are not authorized to export the data.","Vous n’êtes pas autorisé(e) à exporter cette ressource.",,"java\com\axelor\db\JpaSecurity.java:31"
+"You are not authorized to read this resource.","Vous n’êtes pas autorisé(e) à lire cette ressource.",,"java\com\axelor\db\JpaSecurity.java:27"
+"You are not authorized to remove this resource.","Vous n’êtes pas autorisé(e) à supprimer cette ressource.",,"java\com\axelor\db\JpaSecurity.java:30"
+"You are not authorized to update this resource.","Vous n’êtes pas autorisé(e) à modifier cette ressource.",,"java\com\axelor\db\JpaSecurity.java:28"
+"You can't create document here.","Vous ne pouvez pas créer un document ici.",,"java\com\axelor\dms\db\repo\DMSFileRepository.java:433"
+"You can't move document here.","Vous ne pouvez pas déplacer le document ici.",,"java\com\axelor\dms\db\repo\DMSFileRepository.java:436"
+"Your current password","Votre mot de passe actuel",,"resources\views\User.xml:41"
+"action-attrs","action-attrs",,"resources\views\Meta.xml:22"
+"action-condition","action-condition",,"resources\views\Meta.xml:27"
+"action-export","action-export",,"resources\views\Meta.xml:31"
+"action-group","action-group",,"resources\views\Meta.xml:25"
+"action-import","action-import",,"resources\views\Meta.xml:30"
+"action-method","action-method",,"resources\views\Meta.xml:29"
+"action-record","action-record",,"resources\views\Meta.xml:28"
+"action-report","action-report",,"resources\views\Meta.xml:32"
+"action-script","action-script",,"resources\views\Meta.xml:24"
+"action-validate","action-validate",,"resources\views\Meta.xml:26"
+"action-view","action-view",,"resources\views\Meta.xml:23"
+"action-ws","action-ws",,"resources\views\Meta.xml:33"
+"added comment","commentaire ajouté",,"java\com\axelor\mail\db\repo\MailMessageRepository.java:337"
+"confirm new password","confirmer le nouveau mot de passe",,"resources\views\User.xml:45
+resources\views\User.xml:75"
+"confirm password","confirmer le mot de passe",,"resources\views\User.xml:50"
+"current password","mot de passe actuel",,"resources\views\User.xml:72"
+"form::Select","Sélection",,"resources\views\Meta.xml:319"
+"important","important",,"resources\domains\Team.xml:43"
+"login name","login",,"resources\views\User.xml:22"
+"new password","nouveau mot de passe",,"resources\views\User.xml:44
+resources\views\User.xml:74"
+"password","mot de passe",,"resources\views\User.xml:49"
+"success","succès",,"resources\domains\Team.xml:42"
+"updated document","a modifié le document",,"java\com\axelor\mail\db\repo\MailMessageRepository.java:334"
+"user group","groupe",,"resources\views\User.xml:23"
+"user name","nom",,"resources\views\User.xml:21"
+"user.password.pattern.title","Veuillez utiliser au moins 4 caractères.",,"java\com\axelor\app\AvailableAppSettings.java:113
+resources\views\User.xml:52
+resources\views\User.xml:76"
+"your current password","votre mot de passe actuel",,"resources\views\User.xml:41"
+"{0} customized view is deleted.","{0} vue personnalisée est supprimée",,"java\com\axelor\meta\web\MetaController.java:211"
+"{0} customized views are deleted.","{0} vues personnalisées sont supprimées",,"java\com\axelor\meta\web\MetaController.java:211"
