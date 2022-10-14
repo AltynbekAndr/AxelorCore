@@ -17,6 +17,7 @@
  */
 package com.axelor.db;
 
+import com.axelor.auth.db.User;
 import com.axelor.db.mapper.Mapper;
 import com.axelor.db.mapper.Property;
 import com.axelor.db.mapper.PropertyType;
@@ -27,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 /**
  * The JPA implementation of the {@link Repository}.
@@ -49,7 +51,10 @@ public class JpaRepository<T extends Model> implements Repository<T> {
     }
     return Arrays.asList(fields);
   }
-
+  public static User saveUser(User entity) {
+    JPA.persist(entity);
+    return entity;
+  }
   @Override
   public Query<T> all() {
     return JPA.all(modelClass);
@@ -82,6 +87,7 @@ public class JpaRepository<T extends Model> implements Repository<T> {
   }
 
   @Override
+  @Transactional
   public T save(T entity) {
     return JPA.save(entity);
   }
@@ -192,4 +198,6 @@ public class JpaRepository<T extends Model> implements Repository<T> {
     }
     return Beans.inject(new JpaRepository<>(type));
   }
+
+
 }

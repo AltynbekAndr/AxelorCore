@@ -73,6 +73,7 @@ public class AuthPac4jModuleLocal extends AuthPac4jModule {
   protected void configureAnon() {
     super.configureAnon();
     addFilterChain("/login.jsp", ANON);
+    addFilterChain("/registration.jsp", ANON);
     addFilterChain("/change-password.jsp", ANON);
   }
 

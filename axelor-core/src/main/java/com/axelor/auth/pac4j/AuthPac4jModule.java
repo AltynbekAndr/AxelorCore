@@ -19,10 +19,13 @@ package com.axelor.auth.pac4j;
 
 import com.axelor.app.AppSettings;
 import com.axelor.app.AvailableAppSettings;
-import com.axelor.auth.AuthFilter;
-import com.axelor.auth.AuthUtils;
-import com.axelor.auth.AuthWebModule;
+import com.axelor.auth.*;
+import com.axelor.auth.db.Group;
+import com.axelor.auth.db.User;
+import com.axelor.auth.db.repo.UserRepository;
+import com.axelor.auth.pac4j.service.RegistrationService;
 import com.axelor.common.StringUtils;
+import com.axelor.inject.Beans;
 import com.google.common.base.Preconditions;
 import com.google.inject.Key;
 import com.google.inject.Provides;
@@ -38,27 +41,18 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -86,7 +80,6 @@ import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.http.client.indirect.FormClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 public abstract class AuthPac4jModule extends AuthWebModule {
 
   @SuppressWarnings("rawtypes")
@@ -135,6 +128,8 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     bind(Config.class).toProvider(ConfigProvider.class);
     bindRealm().to(AuthPac4jRealm.class);
     addFilterChain("/login.jsp", Key.get(AxelorLoginPageFilter.class));
+    addFilterChain("/registration.jsp", Key.get(AxelorRegistrationPageFilter.class));
+    addFilterChain("/registration", Key.get(AxelorRegistrationFilter.class));
     addFilterChain("/logout", Key.get(AxelorLogoutFilter.class));
     addFilterChain("/callback", Key.get(AxelorCallbackFilter.class));
     addFilterChain("/callback/**", Key.get(AxelorCallbackFilter.class));
@@ -555,5 +550,161 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
     @Override
     public void destroy() {}
+  }
+
+  private static class AxelorRegistrationPageFilter implements Filter {
+
+    @Override
+    public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {}
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+      chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {}
+  }
+
+  private static class AxelorRegistrationFilter implements Filter {
+
+    @Inject private AuthService authService;
+
+    @Override
+    public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {}
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+      String contenType = request.getContentType();
+
+      //Fiz
+      String registersAccount = request.getParameter("registersAccount"); //Кем регистрируется данный аккаунт
+      //Yur
+      String registersAccountLegal = request.getParameter("registersAccountLegal");//Кем регистрируется данный аккаунт
+
+      if (contenType.equals("application/x-www-form-urlencoded")) {
+        if(registersAccount!=null){
+          createIndividualUser(request, authService);
+        }else if(registersAccountLegal!=null){
+          createOrganization(request, authService);
+        }
+
+      }
+
+      /*try {
+        chain.doFilter(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }*/
+    }
+
+    @Override
+    public void destroy() {}
+  }
+
+  public static void createIndividualUser(ServletRequest request, AuthService authService) {
+
+
+    /*
+    Enumeration<String> parameterNames =  request.getParameterNames();
+    while (parameterNames.hasMoreElements()) {
+      System.out.println(parameterNames.nextElement());
+    }*/
+
+
+
+    String сitizenships = request.getParameter("сitizenships"); // Гранжданство
+    String passport = request.getParameter("passport"); // Идентификатор физического лица
+    String dateOfBirth = request.getParameter("dateOfBirth"); // Дата рождения
+    String documentIssueDate = request.getParameter("documentIssueDate"); // Дата выдачи документа
+    String documentExpirationDate =
+            request.getParameter("documentExpirationDate"); // Срок истечение паспорта
+
+    String issuningAuthority = request.getParameter("issuningAuthority"); // Орган выдачи документа
+    String country = request.getParameter("country"); // Страна
+    String region = request.getParameter("region"); // Область
+    String area = request.getParameter("area"); // Район
+    String postcode = request.getParameter("postcode"); // почтовый индекс
+    String town = request.getParameter("town"); // Город/село
+    String street = request.getParameter("street"); // Название улицы
+    String homeNum = request.getParameter("homeNum"); // Номер дома
+    String apartments = request.getParameter("apartments"); // Номер квартиры
+    String phoneType = request.getParameter("phoneType"); // Номер телефона
+    String phoneType2 = request.getParameter("phoneType2"); // Добавить номер
+    String email = request.getParameter("email"); // Электронная почта
+    String password = request.getParameter("password"); // пароль
+    String names = request.getParameter("names"); // имя
+    String lastname = request.getParameter("lastname"); // фио
+    String middlename = request.getParameter("middlename"); // отчество
+    password = authService.encrypt(password);
+
+    RegistrationService registrationService = new RegistrationService();
+    Connection connection = registrationService.getConnection();
+
+
+    //Не обяз.е поля
+
+
+    //Юр
+    // Отчество
+
+    // почта индекс,
+    // номер здания,
+    // офис
+    // Второй телефон
+
+
+    //физ лицо
+
+    // почта индекс,
+    // номер дома,
+    // Название улицы
+    // Номер квартиры
+    // Второй телефон
+
+
+    int employee_id = registrationService.createEmployee(dateOfBirth,phoneType,
+            phoneType2,names,
+            сitizenships,town,country,area,
+            passport,documentExpirationDate,documentIssueDate,
+            issuningAuthority,connection);
+    registrationService.createUser(password,email,names,email,employee_id,connection);
+
+  }
+
+  public static void createOrganization(ServletRequest request, AuthService authService) {
+    String registersAccountLegal = request.getParameter("registersAccountLegal");
+    String сitizenshipsLegal = request.getParameter("сitizenshipsLegal");
+    String companyLegal = request.getParameter("companyLegal");
+    String TaxID = request.getParameter("TaxID");
+    String countryLegal = request.getParameter("countryLegal");
+    String regionLegal = request.getParameter("regionLegal");
+    String areaLegal = request.getParameter("areaLegal");
+    String postcodeLegal = request.getParameter("postcodeLegal");
+    String townLegal = request.getParameter("townLegal");
+    String homeNumLegal = request.getParameter("homeNumLegal");
+    String officeNumber = request.getParameter("officeNumber");
+    String phoneTypeLegal = request.getParameter("phoneTypeLegal");
+    String phoneTypeLegal2 = request.getParameter("phoneTypeLegal2");
+    String emailLegal = request.getParameter("emailLegal");
+    String passwordLegal = request.getParameter("passwordLegal");
+    String includedPerson = request.getParameter("includedPerson");
+    String registrationNumber = request.getParameter("registrationNumber");
+    String documentRegistrationCode = request.getParameter("documentRegistrationCode");
+
+    passwordLegal = authService.encrypt(passwordLegal);
+
+    RegistrationService registrationService = new RegistrationService();
+    Connection connection = registrationService.getConnection();
+
+
+    int employee_id = registrationService.createEmployee("0001-01-01",phoneTypeLegal,
+            phoneTypeLegal2,includedPerson,
+            сitizenshipsLegal,townLegal,countryLegal,areaLegal,
+            registrationNumber,"0001-01-01","0001-01-01",
+            registersAccountLegal,connection);
+    registrationService.createUser(passwordLegal,emailLegal,includedPerson,emailLegal,employee_id,connection);
+
   }
 }

@@ -15,20 +15,155 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-body {
-  height: 100%;
-  display: block;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ @import url(https://fonts.googleapis.com/css?family=Montserrat);
+ * {margin: 0; padding: 0;}
 
-  display: block;
-  background-color: #2f4050;
-  padding-top: 60px;
+ html {
+   height: 100%;
+ }
+
+body {
+ font-family: montserrat, arial, verdana;
+  background-color: #2C3E50;
+
+
+}
+#registration, #login-form {
+  width: 400px;
+  margin: 50px auto;
+  text-align: left;
+  position: relative;
+}
+#authorization, #login-form {
+  width: 400px;
+  margin: 50px auto;
+  text-align: left;
+  position: relative;
 }
 
+.form-fields {
+  background: white;
+  border: 0 none;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  height: 601px;
+  width: 380px;
+  left: 0px;
+  top: 0px;
+  border-radius: 8px;
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+
+
+#registration input, #login-form {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+#registration select{
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+
+}
+#authorization input, #authorization select, #login-form {
+  padding: 15px;
+
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+#registration .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+
+}
+#authorization .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#registration .action-button:hover, #registration .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+#authorization .action-button:hover, #authorization .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+#noRegistr {
+  display: flex;
+}
+
+#noAccount {
+  font-size: 14px
+}
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+.fs-subtitle {
+  font-weight: bold;
+  font-size: 20px;
+  color: #03923B;
+  margin-bottom: 20px;
+}
+
+.fs-title{
+  text-align: center;
+}
+.fs-subtitle{
+  text-align: center;
+}
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66px;
+  height: 66px;
+}
 @media (max-width: 979px) {
   body {
       padding-top: 20px;
   }
+
 }
 
 header .navbar .brand-logo {
@@ -74,7 +209,14 @@ header .navbar .brand-logo img {
   box-shadow: none;
   background-color: transparent;
 }
-
+.register {
+  float: inherit !important;
+  margin: auto !important;
+  width: 420px;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+  }
 .alert {
   width: 420px;
 }
@@ -109,6 +251,11 @@ header .navbar .brand-logo img {
 .login-panel .form-fields {
   margin-top: 8px;
   background-color: #eaeaea;
+}
+
+
+.hidden {
+  display : absolute  ;
 }
 
 .login-panel .form-footer {
@@ -170,10 +317,10 @@ body > footer > p a:visited {
 }
 
 .alert {
-  box-sizing: border-box;
+  box-sizing: 20px;
   margin: auto;
-  margin-top: 8px;
-  border-radius: 0;
+  margin-top: 5px;
+  border-radius: 8px;
 }
 
 .alert h4 + ul, .alert h4 + div {
@@ -181,7 +328,7 @@ body > footer > p a:visited {
 }
 
 .form-fields > .alert {
-  width: 100%;
+  width: 70%;
 }
 
 #social-buttons {
@@ -205,4 +352,25 @@ body > footer > p a:visited {
 
 #social-buttons .social-title {
   padding-left: 8px;
+}
+.hidden {
+  display : none ;
+
+}
+.show {
+  display: block;
+
+}
+/* .btn-link {
+  color: #2C3E50;
+  height: 20px;
+  width: 147px;
+
+} */
+#authorized{
+  display: none;
+}
+
+#noAccount {
+  font-size: 14px;
 }

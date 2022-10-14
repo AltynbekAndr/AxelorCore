@@ -141,8 +141,6 @@ public class LdapTest extends AbstractLdapTestUnit {
     void loginSuccess() {
       LdapProfile p = authLdap.findById("jsmith");
 
-      System.out.println(p);
-
       authLdap.validate(new UsernamePasswordCredentials("jsmith", "secret"), null);
       LdapProfile profile = authLdap.findById("jsmith");
       userService.saveUser(profile);

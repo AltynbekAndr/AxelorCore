@@ -154,6 +154,7 @@ public class AuditInterceptor extends EmptyInterceptor {
 
     final User user = this.getUser();
     for (int i = 0; i < propertyNames.length; i++) {
+
       if (!canUpdate(entity, propertyNames[i], previousState[i], currentState[i])) {
         throw new PersistenceException(
             String.format(
