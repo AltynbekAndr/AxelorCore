@@ -51,10 +51,12 @@ public class JpaRepository<T extends Model> implements Repository<T> {
     }
     return Arrays.asList(fields);
   }
+
   public static User saveUser(User entity) {
     JPA.persist(entity);
     return entity;
   }
+
   @Override
   public Query<T> all() {
     return JPA.all(modelClass);
@@ -198,6 +200,4 @@ public class JpaRepository<T extends Model> implements Repository<T> {
     }
     return Beans.inject(new JpaRepository<>(type));
   }
-
-
 }

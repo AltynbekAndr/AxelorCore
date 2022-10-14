@@ -65,7 +65,7 @@ String passwordPattern = authService.getPasswordPattern();
 String passwordPatternTitle = authService.getPasswordPatternTitle();
 
 int year = Calendar.getInstance().get(Calendar.YEAR);
-String copyright = String.format("&copy; 2005 - %s Axelor. All Rights Reserved.", year);
+String copyright = String.format("&copy; 2022 -  Предварительное информирование. Государственная таможенная служба при Министерстве финансов Кыргызской Республики.", year);
 
 @SuppressWarnings("all")
 Map<String, String> tenants = (Map) session.getAttribute("tenantMap");
@@ -86,18 +86,76 @@ String callbackUrl = AuthPac4jModule.getCallbackUrl();
     <x:script src="js/application.login.js" />
   </head>
   <body>
+    <div class="container-fluid">
+      <div class="panel login-panel">
+      <form id="login-form" action="<%=callbackUrl%>" method="POST">
+        <script src="js/application.login.js"></script>
+        <div class="form-fields">
+          <p style="text-align:center;"></p><img src="img/logo.png" width="50px" class="logo"></p>
+          <h2 class="fs-title"><b>Измените пароль</b></h2>
+
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-envelope"></i></span>
+                <input type="text" id="usernameId" name="username" placeholder="<%= loginUserName %>"
+                  required="required"
+                  <%= username != null ? "value=\"" + HtmlUtils.escapeAttribute(username) + "\" readonly=\"readonly\"" : "autofocus=\"autofocus\"" %>>
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-lock"></i></span>
+                <input type="password" id="passwordId" name="password" placeholder="<%= loginPassword %>"
+                  required="required" autofocus="autofocus"
+                  oninput="checkPasswordInputs()">
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-lock"></i></span>
+                <input type="password" id="newPasswordId" name="newPassword" placeholder="<%= newPassword %>"
+                  required="required"
+                  oninput="checkPasswordInputs()"
+                  pattern="<%= passwordPattern %>"
+                  title="<%= passwordPatternTitle %>">
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-lock"></i></span>
+                <input type="password" id="confirmPasswordId" name="confirmPassword" placeholder="<%= confirmPassword %>"
+                  required="required"
+                  oninput="checkPasswordInputs()">
+              </div>
+              
+              
+	            <div id="password-title" class="alert alert-block alert-info text-center">
+	              <h4><%= passwordPatternTitle %></h4>
+	            </div>
+              <% if (tenants != null && tenants.size() > 1) { %>
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-database"></i></span>
+                <select name="tenantId">
+                <% for (String key : tenants.keySet()) { %>
+                	<option value="<%= key %>" <%= (key.equals(tenantId) ? "selected" : "") %>><%= tenants.get(key) %></option>
+                <% } %>
+                </select>
+               
+              </div>
+              <% } %>
+              <div class ="form-footer">
+              <button class="btn btn-primary" type="submit"><%= confirmSubmit %></button>
+              <br>
+              <br><b>Есть аккаунт?</b>
+              <a href="login.jsp">Войти</a>
+              </div>
+            </div>
+            <footer class="container-fluid" id="footerPassword" >
+              <p class="credit small"><%= copyright %></p>
+            </footer>
+      </form>
+   </div>
+ </div>
+ 
+
+<!-- 
 
     <div class="container-fluid">
       <div class="panel login-panel">
-        <div class="panel-header panel-default">
-          <img src="img/axelor.png" width="192px">
-        </div>
-
-        <div class="alert alert-block alert-error text-center">
-					<h4><%= HtmlUtils.escape(errorMsg) %></h4>
-				</div>
-
-			  <div class="panel-body">
+			  <div class="panel-body2">
           <form id="login-form" action="<%=callbackUrl%>" method="POST">
             <div class="form-fields">
               <div class="input-prepend">
@@ -146,11 +204,9 @@ String callbackUrl = AuthPac4jModule.getCallbackUrl();
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <footer class="container-fluid">
-      <p class="credit small"><%= copyright %></p>
-    </footer>
+    
 
     <script type="text/javascript">
     function checkPasswordInputs() {

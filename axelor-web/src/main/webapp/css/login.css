@@ -28,19 +28,12 @@ body {
 
 
 }
-#registration, #login-form {
-  width: 400px;
+#registration, #login-form, #authorization {
+  width: 380px;
   margin: 50px auto;
   text-align: left;
   position: relative;
 }
-#authorization, #login-form {
-  width: 400px;
-  margin: 50px auto;
-  text-align: left;
-  position: relative;
-}
-
 .form-fields {
   background: white;
   border: 0 none;
@@ -48,18 +41,15 @@ body {
   padding: 20px 30px;
   box-sizing: border-box;
   width: 80%;
-  margin: 0 10%;
+  margin: 0;
   height: 601px;
   width: 380px;
   left: 0px;
   top: 0px;
   border-radius: 8px;
-  /*stacking fieldsets above each other*/
   position: relative;
 }
-
-
-#registration input, #login-form {
+#registration input {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -69,6 +59,21 @@ body {
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
+}
+.radio{
+  width: 0;
+  position: relative;
+  align-items: center;
+  display: flex;
+}
+.radio__input {
+  position: absolute;
+  flex-grow: 1;
+  width: 100%;
+}
+.radio__label {
+  padding-right: .5em;
+  white-space: nowrap;
 }
 #registration select{
   border: 1px solid #ccc;
@@ -79,11 +84,9 @@ body {
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
-
 }
-#authorization input, #authorization select, #login-form {
+#authorization input, #authorization select {
   padding: 15px;
-
   border-radius: 3px;
   margin-bottom: 10px;
   width: 100%;
@@ -92,20 +95,7 @@ body {
   color: #2C3E50;
   font-size: 13px;
 }
-
-#registration .action-button {
-  width: 100px;
-  background: #27AE60;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 1px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 5px;
-
-}
-#authorization .action-button {
+#registration .action-button, #authorization .action-button {
   width: 100px;
   background: #27AE60;
   font-weight: bold;
@@ -116,22 +106,18 @@ body {
   padding: 10px 5px;
   margin: 10px 5px;
 }
-
 #registration .action-button:hover, #registration .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 #authorization .action-button:hover, #authorization .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
-
 #noRegistr {
   display: flex;
 }
-
 #noAccount {
   font-size: 14px
 }
-/*headings*/
 .fs-title {
   font-size: 15px;
   text-transform: uppercase;
@@ -145,7 +131,6 @@ body {
   color: #03923B;
   margin-bottom: 20px;
 }
-
 .fs-title{
   text-align: center;
 }
@@ -163,48 +148,39 @@ body {
   body {
       padding-top: 20px;
   }
-
 }
-
 header .navbar .brand-logo {
   float: left;
 }
-
 header .navbar .brand-logo img {
   height: 32px;
   margin-top: 4px;
 }
-
 .panel {
   border: 1px solid #d4d4d4;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
   background-color: #fff;
 }
-
 .panel .panel-header {
   background-color: #dadada;
   padding: 10px;
   text-align: center;
 }
-
 .panel .panel-title {
   font-size: 18px;
   font-weight: 600;
 }
-
 .panel .panel-body {
   padding: 14px;
   overflow: hidden;
 }
-
 .panel {
   margin-bottom: 18px;
 }
-
 .login-panel {
   float: inherit !important;
   margin: auto !important;
-  width: 420px;
+  width: 380px;
   border: 0;
   box-shadow: none;
   background-color: transparent;
@@ -212,7 +188,7 @@ header .navbar .brand-logo img {
 .register {
   float: inherit !important;
   margin: auto !important;
-  width: 420px;
+  width: 380px;
   border: 0;
   box-shadow: none;
   background-color: transparent;
@@ -220,57 +196,47 @@ header .navbar .brand-logo img {
 .alert {
   width: 420px;
 }
-
 @media (min-width: 1200px) {
   .alert,
   .login-panel {
-    width: 420px;
+    width: 380px;
   }
 }
-
 @media (max-width: 767px) {
   .alert,
   .login-panel {
     width: 100%;
   }
 }
-
 .login-panel .panel-header {
   padding: 22px;
 }
-
 .login-panel .panel-body {
   padding: 0;
 }
-
 .login-panel .form-fields,
 .login-panel .form-footer {
+  
   padding: 22px;
 }
-
 .login-panel .form-fields {
   margin-top: 8px;
-  background-color: #eaeaea;
+  background-color: #FFFFFF;
 }
-
-
 .hidden {
   display : absolute  ;
 }
-
 .login-panel .form-footer {
   background-color: #fff;
 }
-
 .login-panel .form-footer button {
   width: 100%;
   padding: 8px 16px;
   font-weight: 600;
 }
-
-#login-form {
+/* #login-form {
   margin: 0;
-}
+} */
 
 #login-form input[type="text"],
 #login-form input[type="password"],
@@ -355,22 +321,42 @@ body > footer > p a:visited {
 }
 .hidden {
   display : none ;
-
 }
-.show {
-  display: block;
-
-}
-/* .btn-link {
-  color: #2C3E50;
-  height: 20px;
-  width: 147px;
-
-} */
-#authorized{
-  display: none;
-}
-
 #noAccount {
   font-size: 14px;
 }
+#footerLogin, #footerRegister, #footerPassword {
+  text-align: center; 
+  color:#FFFDFD;
+  /* width: 380px;  */
+  height: 54px;
+  margin: 4% 4%;
+  padding-bottom: 40px;
+}
+/* #footerRegister, #footerPassword {
+  text-align: center; 
+  color:#FFFDFD;
+  width: 380px; 
+  height: 54px;
+  margin: 4% 4%;
+  padding-bottom: 40px;
+} */
+.password {
+	margin: 15px auto;
+	position: relative;
+ 
+}
+.password-control {
+	position: absolute;
+	top: 16.67%;
+	right: 8.33%;
+  left: 91%;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+	background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+
