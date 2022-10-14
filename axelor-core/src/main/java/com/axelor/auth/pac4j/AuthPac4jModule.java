@@ -20,12 +20,8 @@ package com.axelor.auth.pac4j;
 import com.axelor.app.AppSettings;
 import com.axelor.app.AvailableAppSettings;
 import com.axelor.auth.*;
-import com.axelor.auth.db.Group;
-import com.axelor.auth.db.User;
-import com.axelor.auth.db.repo.UserRepository;
 import com.axelor.auth.pac4j.service.RegistrationService;
 import com.axelor.common.StringUtils;
-import com.axelor.inject.Beans;
 import com.google.common.base.Preconditions;
 import com.google.inject.Key;
 import com.google.inject.Provides;
@@ -42,7 +38,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.sql.Connection;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -51,8 +46,6 @@ import javax.inject.Provider;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationListener;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -80,6 +73,7 @@ import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.http.client.indirect.FormClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 public abstract class AuthPac4jModule extends AuthWebModule {
 
   @SuppressWarnings("rawtypes")
@@ -578,18 +572,19 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
       String contenType = request.getContentType();
 
-      //Fiz
-      String registersAccount = request.getParameter("registersAccount"); //Кем регистрируется данный аккаунт
-      //Yur
-      String registersAccountLegal = request.getParameter("registersAccountLegal");//Кем регистрируется данный аккаунт
+      // Fiz
+      String registersAccount =
+          request.getParameter("registersAccount"); // Кем регистрируется данный аккаунт
+      // Yur
+      String registersAccountLegal =
+          request.getParameter("registersAccountLegal"); // Кем регистрируется данный аккаунт
 
       if (contenType.equals("application/x-www-form-urlencoded")) {
-        if(registersAccount!=null){
+        if (registersAccount != null) {
           createIndividualUser(request, authService);
-        }else if(registersAccountLegal!=null){
+        } else if (registersAccountLegal != null) {
           createOrganization(request, authService);
         }
-
       }
 
       /*try {
@@ -605,21 +600,18 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
   public static void createIndividualUser(ServletRequest request, AuthService authService) {
 
-
     /*
     Enumeration<String> parameterNames =  request.getParameterNames();
     while (parameterNames.hasMoreElements()) {
       System.out.println(parameterNames.nextElement());
     }*/
 
-
-
     String сitizenships = request.getParameter("сitizenships"); // Гранжданство
     String passport = request.getParameter("passport"); // Идентификатор физического лица
     String dateOfBirth = request.getParameter("dateOfBirth"); // Дата рождения
     String documentIssueDate = request.getParameter("documentIssueDate"); // Дата выдачи документа
     String documentExpirationDate =
-            request.getParameter("documentExpirationDate"); // Срок истечение паспорта
+        request.getParameter("documentExpirationDate"); // Срок истечение паспорта
 
     String issuningAuthority = request.getParameter("issuningAuthority"); // Орган выдачи документа
     String country = request.getParameter("country"); // Страна
@@ -642,11 +634,9 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     RegistrationService registrationService = new RegistrationService();
     Connection connection = registrationService.getConnection();
 
+    // Не обяз.е поля
 
-    //Не обяз.е поля
-
-
-    //Юр
+    // Юр
     // Отчество
 
     // почта индекс,
@@ -654,8 +644,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     // офис
     // Второй телефон
 
-
-    //физ лицо
+    // физ лицо
 
     // почта индекс,
     // номер дома,
@@ -663,14 +652,22 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     // Номер квартиры
     // Второй телефон
 
-
-    int employee_id = registrationService.createEmployee(dateOfBirth,phoneType,
-            phoneType2,names,
-            сitizenships,town,country,area,
-            passport,documentExpirationDate,documentIssueDate,
-            issuningAuthority,connection);
-    registrationService.createUser(password,email,names,email,employee_id,connection);
-
+    int employee_id =
+        registrationService.createEmployee(
+            dateOfBirth,
+            phoneType,
+            phoneType2,
+            names,
+            сitizenships,
+            town,
+            country,
+            area,
+            passport,
+            documentExpirationDate,
+            documentIssueDate,
+            issuningAuthority,
+            connection);
+    registrationService.createUser(password, email, names, email, employee_id, connection);
   }
 
   public static void createOrganization(ServletRequest request, AuthService authService) {
@@ -698,13 +695,22 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     RegistrationService registrationService = new RegistrationService();
     Connection connection = registrationService.getConnection();
 
-
-    int employee_id = registrationService.createEmployee("0001-01-01",phoneTypeLegal,
-            phoneTypeLegal2,includedPerson,
-            сitizenshipsLegal,townLegal,countryLegal,areaLegal,
-            registrationNumber,"0001-01-01","0001-01-01",
-            registersAccountLegal,connection);
-    registrationService.createUser(passwordLegal,emailLegal,includedPerson,emailLegal,employee_id,connection);
-
+    int employee_id =
+        registrationService.createEmployee(
+            "0001-01-01",
+            phoneTypeLegal,
+            phoneTypeLegal2,
+            includedPerson,
+            сitizenshipsLegal,
+            townLegal,
+            countryLegal,
+            areaLegal,
+            registrationNumber,
+            "0001-01-01",
+            "0001-01-01",
+            registersAccountLegal,
+            connection);
+    registrationService.createUser(
+        passwordLegal, emailLegal, includedPerson, emailLegal, employee_id, connection);
   }
 }

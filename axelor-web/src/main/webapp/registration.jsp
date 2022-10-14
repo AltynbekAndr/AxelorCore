@@ -1,4 +1,4 @@
-aaa<%--
+<%--
 
     Axelor Business Solutions
 
@@ -66,7 +66,7 @@ String warningAdblock2 = T.apply("Please disable the adblocker as it may slow do
 String loginWith = T.apply("Log in with %s");
 
 int year = Calendar.getInstance().get(Calendar.YEAR);
-String copyright = String.format("&copy; 2005 - %s Axelor. All Rights Reserved.", year);
+String copyright = String.format("&copy;  @ 2022 — Предварительное информирование. Государственная таможенная служба при Министерстве финансов Кыргызской Республики.", year);
 
 String loginHeader = "/login-header.jsp";
 if (pageContext.getServletContext().getResource(loginHeader) == null) {
@@ -81,6 +81,8 @@ AppSettings settings = AppSettings.get();
 String callbackUrl = AuthPac4jModule.getCallbackUrl();
 
 Set<String> centralClients = AuthPac4jModule.getCentralClients();
+  
+  
 
 	%>
 <!DOCTYPE html>
@@ -97,12 +99,14 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
 <link href="css/login.css" rel="stylesheet">
 </head>
   <body>
+    
     <div id="register" class="animate form">
-        <form id="registration" action="registration.jsp" method="POST"> 
-        <script src="js/application.login.js"></script> 
+        <form id="registration" action="registration.jsp" method="POST" required=""> 
+        
+        <!-- First page -->
         <div id="id1"  class="panel-body1">
             <div class="form-fields">
-              <p style="text-align:center;"></p><img src="img/axelor.png" width="50px" class="logo"></p><br>
+              <p style="text-align:center; line-height: 0;"></p><img src="img/logo.png" width="50px" class="logo"></p>
               <h2 class="fs-title"><b>Предварительное информирование</b></h2>
               <h3 class="fs-subtitle">Регистрация</h3>
               <b class="headings">Фамилия</b><br>
@@ -110,7 +114,7 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
               <b class="headings">Имя</b><br>
               <input type="text" placeholder="Введите Ваше имя*" name="names" id="names" required>
               <b class="headings">Отчество</b><br>
-              <input type="text" placeholder="Введите Ваше отчество*" name="middlename" id="middlename" required>
+              <input type="text" placeholder="Введите Ваше отчество*" name="middlename" id="middlename">
               <% if (tenants != null && tenants.size() > 1) { %>
               <div class="input-prepend">
                 <span class="add-on"><i class="fa fa-database"></i></span>
@@ -122,80 +126,153 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
               </div>
               <% } %>
               <div>
-                <button id="pageOne" data-btn-next="2" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
+                <button id="pageOne" data-btn-next="2" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/forward.png" width=25" height="25" ></button>
                 <br><b>Есть аккаунт?</b>
                 <a href="login.jsp">Войти</a>
               </div>
             </div>
         </div>
-        <div id="indiv2"  class="panel-indv2">
-          <div class="form-fields">
-              <div class="сitizenship">
-                <b>Гражданско-правовой статус*</b><br>
-                <div >
-                  <input  type="radio" name="flexRadioDefault" id="legal"  checked>
-                  <label for="legal">Юридическое лицо</label>
-                </div>
-                <div >
-                  <input  type="radio" name="flexRadioDefault" id="individual">
-                  <label  for="individual">Физическое лицо"</label>
-                  </div>
+      
+      <!-- Second page -->
+        <div id="cityChoose"  class="panel-indv2 panel-legal2">
+          <div class="form-fields"  style="height: 720px;">
+            <div class="сitizenship">
+              <b>Гражданско-правовой статус*</b>
+              <div  class="radio">
+              <input type="radio" id="legal" value="Юридическое лицо" name="btnRadio" class="radio__input">
+              <label for="legal" class="radio__label">Юридическое лицо</label><br>
+          </div>
+          <div class="radio">
+              <input type="radio" id="individual" value="Физическое лицо" name="btnRadio" class="radio__input">
+              <label for="individual" class="radio__label">Физическое лицо</label> 
+          </div>
+            </div>
+                <br>
+                <div id="indiv2" >
+                  
                       <b>Кем регистрируется данный аккаунт</b><br>
-                      <select name="registersAccount" id="registersAccount">
-                      <option value="kgz">Пожалуйста, выберите из выпадающего списка*</option>
+                      <select class="indivSelect" name="registersAccount" id="registersAccount" required>
+                      <option value="1">Пожалуйста, выберите из выпадающего списка*</option>
                       <option value="ru">Выбор1</option>
                       <option value="kz">Выбор2</option>
                       <option value="uz">Выбор3</option>
                       </select>
-              </div>
-                  <div >
+              
+                  <br>
                       <b>Гражданство</b><br>
-                      <select name="сitizenships" id="сitizenships">
+                      <select class="indivSelect" name="сitizenships" id="сitizenships" required>
+                        <option value="1" >Выберите страну</option>  
                       <option value="kgz">Кыргызстан</option>
                       <option value="ru">Россия</option>
                       <option value="kz">Казакстан</option>
                       <option value="uz">Узбекистан</option>
                       </select>
-                  </div>
-                  <div>
+             
+                  <div style="margin-top: 10px;">
                       <b>Идентификатор физического лица</b><br>
-                      <input type="text" placeholder="Идентификатор физического лица" name="passport" id="passport" required>
+                      <input type="text" min="5" placeholder="Идентификатор физического лица" name="passport" id="passport" required >
                   </div>
-                  <div>
+                  <div style="margin-top: 10px;">
                       <b>Дата рождения</b><br>
-                      <input type="date" placeholder="Число/месяц/год*" name="dateOfBirth" id="dateOfBirth" required>
-                  </div>        
-                  <button id="pageIndv2" data-btn-next="2" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
-                  <button id="backIndv2" data-btn-next="1" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+                      <input class="indivSelect" type="date" placeholder="Число/месяц/год*" name="dateOfBirth" id="dateOfBirth" required>
+                  </div>  
+                  <div style="margin-top: 10px;">
+                    <b>Орган выдачи документа</b><br>
+                    <input type="text" placeholder="Орган выдачи документа" name="issuningAuthority" id="issuningAuthority" required>
+                  </div>
+                  <div style="margin-top: 10px;">
+                      <b>Дата выдачи документа</b><br>
+                      <input type="date" placeholder="Число/месяц/год*" name="documentIssueDate" id="documentIssueDate" required>
+                      </div>    
+                      <div style="margin-top: 10px;">
+                        <b>Срок истечения документа</b><br>
+                        <input type="date" placeholder="Число/месяц/год*" name="documentExpirationDate" id="documentExpirationDate" required>
+                      </div>      
+                  <button id="pageIndv2" data-btn-next="2" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/forward.png" width=25" height="25"></button>
+                  <button id="backIndv2" data-btn-next="1" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
                   <br>
                   <br>
                   <br><b>Есть аккаунт?</b>
                   <a href="login.jsp">Войти</a>
+                </div>
+                
+
+                <div id="legal2" class="сitizenship">
+                 <br> 
+                      <b>Кем регистрируется данный аккаунт</b><br>
+                      <select name="registersAccountLegal" id="registersAccountLegal">
+                      <option value="1">Пожалуйста, выберите из выпадающего списка*</option>
+                      <option value="ru">Выбор1</option>
+                      <option value="kz">Выбор2</option>
+                      <option value="uz">Выбор3</option>
+                      </select>
+
+
+                      <div >
+                        <b>Страна регистрации юридического лица</b><br>
+                        <select name="сitizenshipsLegal" id="сitizenshipsLegal" required = "required">
+                        <option value="1">Страна регистрации юридического лица</option>
+                        <option value="kgz">Кыргызстан</option>
+                        <option value="ru">Россия</option>
+                        <option value="kz">Казакстан</option>
+                        <option value="uz">Узбекистан</option>
+                        </select>
+                    </div>
+                    <div>
+                        <b>Наименование компании</b><br>
+                        <input type="text" placeholder="ОсОО Компания" name="companyLegal" id="companyLegal" required>
+                    </div>
+                <button id="pageLegal2" data-btn-next="3" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/forward.png" width=25" height="25" ></button>
+                <button id="backLegal2" data-btn-next="1" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
+                <br>
+                <br>
+                <br><b>Есть аккаунт?</b>
+                <a href="login.jsp">Войти</a>
+          </div>	
+              </div>
+
+
+                
         </div>	
-      </div>
+      
          
         <div id="indiv3"  class="panel-indv3">
-          <div class="form-fields">
+          <div class="form-fields"  >
             <div>
-              <div>
-                <b>Орган выдачи документа</b><br>
-                <input type="text" placeholder="Орган выдачи документа" name="issuningAuthority" id="issuningAuthority" required>
-              </div>
-              <div>
-                  <b>Дата выдачи документа</b><br>
-                  <input type="date" placeholder="Число/месяц/год*" name="documentIssueDate" id="DocumentIssueDate" required>
-                  </div>    
-                  <div>
-                    <b>Срок истечения документа</b><br>
-                    <input type="date" placeholder="Число/месяц/год*" name="documentExpirationDate" id="DocumentExpirationDate" required>
-                  </div>
-              <div>
-                <b>Домашний адрес</b><br>
-                <input type="text" placeholder="Страна" name="country" id="country" required>
-                <input type="text" placeholder="Область" name="region" id="region" required>
-              </div> 			
-                <button id="pageIndv3" data-btn-next="3" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
-                <button id="backIndv3" data-btn-next="2" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+             <div>
+                <b>Домашний адрес</b><br><br>
+                <select name="country" id="countryIndiv" required="" >
+                  <option value="1">Страна*</option>
+                  <option value="ru">Выбор1</option>
+                  <option value="kz">Выбор2</option>
+                  <option value="uz">Выбор3</option>
+                  </select>
+                <select name="region" id="regionIndiv" required="" >
+                  <option value="1">Область*</option>
+                  <option value="ru">Выбор1</option>
+                  <option value="kz">Выбор2</option>
+                  <option value="uz">Выбор3</option>
+                  </select>
+                <select name="area" id="areaIndiv" required="" >
+                  <option value="1">Район*</option>
+                  <option value="ru">Выбор1</option>
+                  <option value="kz">Выбор2</option>
+                  <option value="uz">Выбор3</option>
+                  </select>
+                <input type="text" placeholder="Почтовый индекс" name="postcode" id="postcodeIndiv"><br>
+                <select name="town" id="townIndiv" required="" >
+                  <option value="1">Город*</option>
+                  <option value="ru">Выбор1</option>
+                  <option value="kz">Выбор2</option>
+                  <option value="uz">Выбор3</option>
+                  </select>
+                <input type="text" placeholder="Название улицы*" name="street" id="streetIndiv"><br>
+                <input type="text" placeholder="Номер дома*" name="homeNum" id="homeNumIndiv"><br>
+                <input type="text" placeholder="Номер квартиры" name="apartments" id="apartmentsIndiv">
+            </div>
+           
+                <button id="pageIndv3" data-btn-next="3" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/forward.png" width=25" height="25" ></button>
+                <button id="backIndv3" data-btn-next="2" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
                 <br>
                 <br>
                 <br><b>Есть аккаунт?</b>
@@ -203,136 +280,103 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
               </div>	
          </div>
          </div>
-           <div id="indiv4"  class="panel-indv4">
-            <div class="form-fields">
-                    <div>
-                        <input type="text" placeholder="Район"  name="area" id="area" required>
-                <input type="text" placeholder="Почтовый индекс" name="postcode" id="postcode" required>
-                <input type="text" placeholder="Город/село*" name="town" id="town" required>
-                <input type="text" placeholder="Название улицы*" name="street" id="street" required>
-                <input type="text" placeholder="Номер дома*" name="homeNum" id="homeNum" required>
-                <input type="text" placeholder="Номер квартиры" name="apartments" id="apartments" required>
-                    </div> 
-              <div>
-                        <b>Номер телефона*</b><br>
-                        <select name="phoneType" id="phoneType">
-                        <option>Мобильный</option>
-                <option>Офисный</option>
-                </select>
-                <div style="display: d-flex; flex-direction:column">
-                <select name="phoneType" id="phoneType">
-                <option>+ Код страны</option>
-                <option>+996</option>
-                <option>+7</option>
-                </select>
-                <input type="text" placeholder="Пример:777007700" name="numberPhone" id="numberPhone" required>
-              </div>
-              <button id="addNum1" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img src="img/addNumber.png" width =24px
-                height = 15px>Добавить номер</button>
-                    </div> 
-                    <br>
-                    <div id ="extraNum1" class="extraNum1" style="display:none">
-                        <select name="phoneType" id="phoneType">
-                        <option>Мобильный</option>
-                <option>Офисный</option>
-                </select>
-                <select name="phoneType2" id="phoneType2">
-                <option>+ Код страны</option>
-                <option>+996</option>
-                <option>+7</option>
-                </select>
-                <input type="text" placeholder="Пример:777007700" name="numberPhone" id="numberPhone" required>
-                    </div>
-                <button id="pageIndv4" data-btn-next="5" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
-                <button id="backIndv4" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
-                <br>
-                <br>
-                <br><b>Есть аккаунт?</b>
-                <a href="login.jsp">Войти</a>
-          </div>	
-         </div>
-        
-         <div id="indiv5" class="panel-indv5">
+
+           
+         <div id="indiv4" class="panel-indv5">
           <div class="form-fields">
             <div>
               <br>
               <br>
               <b>Электронная почта</b><br>
-              <input type="email" placeholder="example@gmail.com" name="email" id="email" required>
+              <input type="email" placeholder="example@gmail.com" name="email" id="emailIndiv" required>
             </div>
-              <b>Пароль</b><br>
-              <input type="password" value="FakePSW" name="password" id="myInput" ><br>
+            <div>
+                   
+              <div>
+                        <b>Номер телефона*</b><br>
+                        <select name="phoneType" id="phoneTypeIndiv1">
+                        <option>Мобильный</option>
+                <option>Офисный</option>
+                </select>
+                <select name="phoneType" id="phoneCodeIndiv1">
+                        <option value="1">+ Код страны</option>
+                <option>+996</option>
+                <option>+7</option>
+                </select>
+                <input type="text" name="phoneNumIndiv1" id="phoneNumIndiv1"/>
+                    </div> 
+                    <button id="addNum1" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img src="img/addPhone.png" width =24px
+                        height = 15px>Добавить номер</button>
+                    </div><br>
+                    <div class="extraNum" id="addNumberIndv">
+                        <select name="phoneType" id="phoneTypeIndiv2">
+                        <option>Мобильный</option>
+                <option>Офисный</option>
+                </select>
+                <select name="phoneType">
+                        <option>+ Код страны</option>
+                <option>+996</option>
+                <option>+7</option>
+                </select>
+                <input  type="text" name="phoneNumIndiv2"/>
+                    </div>
               <div class="form-footer">
-                <button id="pageIndv5" data-btn-next="6" class="btn btn-primary btn-lg btn-block"  type="submit" style="float: center;">Зарегистрироваться</button>
+                <button id="pageIndv4" data-btn-next="6" class="btn btn-primary btn-lg btn-block"  type="submit" style="float: center;">Зарегистрироваться</button>
               </div>
               <br>
               <br>
-              <button id="backIndv5" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+              <button id="backIndv4" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
               <br>
               <br>
               <br><b style="float: left;">Есть аккаунт?</b>
               <a href="login.jsp" style="float: left;">Войти</a>
           </div>
         </div>
-        <div id="legal2"  class="panel-legal2">
-          <div class="form-fields">
-              <div class="сitizenship">
-                  <!-- <div>
-                      <b>Гражданско-правовой статус*</b><br>
-              <input type="radio" id="legal" value="Юридическое лицо" checked="checked">
-              <label for="legal"></label><br>
-              <input type="radio" id="individual" value="Физическое лицо">
-              <label for="individual"></label><br> 
-                  </div><br> -->
-                      <b>Кем регистрируется данный аккаунт</b><br>
-                      <select name="registersAccountLegal" id="registersAccountLegal">
-                      <option value="kgz">Пожалуйста, выберите из выпадающего списка*</option>
-                      <option value="ru">Выбор1</option>
-                      <option value="kz">Выбор2</option>
-                      <option value="uz">Выбор3</option>
-                      </select>
-              </div>
-                  <div >
-                      <b>Страна регистрации юридического лица</b><br>
-                      <select name="сitizenshipsLegal" id="сitizenshipsLegal">
-              <option value="kgz">Страна регистрации юридического лица</option>
-                      <option value="kgz">Кыргызстан</option>
-                      <option value="ru">Россия</option>
-                      <option value="kz">Казакстан</option>
-                      <option value="uz">Узбекистан</option>
-                      </select>
-                  </div>
-                  <div>
-                      <b>Наименование компании</b><br>
-                      <input type="text" placeholder="ОсОО Компания" name="companyLegal" id="companyLegal" required>
-                  </div>
-              <button id="pageLegal2" data-btn-next="3" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
-              <button id="backLegal2" data-btn-next="1" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
-              <br>
-              <br>
-              <br><b>Есть аккаунт?</b>
-              <a href="login.jsp">Войти</a>
-        </div>	
-       </div>
+        
+   
        
        <div id="legal3"  class="panel-legal3">
          <div class="form-fields">
             <div>
             <b>Идентификтор налогоплательщика</b><br>
-            <input type="text" placeholder="Идентификтор налогоплательщика" name="TaxID" id="TaxID" required>
+            <input type="text" minlength="8" placeholder="Идентификтор налогоплательщика" name="adressLegal" id="adressLegal" required>
             </div>
           <div>
               <b>Юридический адрес</b><br>
-              <input type="text" placeholder="Страна" name="countryLegal" id="countryLegal" required>
-          <input type="text" placeholder="Область" name="regionLegal" id="regionLegal" required>
-          <input type="text" placeholder="Район" name="areaLegal" id="areaLegal" required>
-          <input type="text" placeholder="Почтовый индекс"name="postcodeLegal" id="postcodeLegal" required>
-          <input type="text" placeholder="Город*" name="townLegal" id="townLegal" required>
+              <select name="countryLegal" id="countryLegal" required="" >
+                <option value="1">Страна*</option>
+                <option value="ru">Выбор1</option>
+                <option value="kz">Выбор2</option>
+                <option value="uz">Выбор3</option>
+                </select>
+              <!-- <input type="text" placeholder="Страна" name="country" id="country" required><br> -->
+              <select name="regionLegal" id="regionLegal" required="" >
+                <option value="1">Область*</option>
+                <option value="ru">Выбор1</option>
+                <option value="kz">Выбор2</option>
+                 <option value="uz">Выбор3</option>
+                </select>
+              <!-- <input type="text" placeholder="Область" name="region" id="region" required><br> -->
+              <select name="areaLegal" id="areaLegal" required="" >
+                <option value="1">Район*</option>
+                <option value="ru">Выбор1</option>
+                <option value="kz">Выбор2</option>
+                <option value="uz">Выбор3</option>
+                </select>
+              <!-- <input type="text" placeholder="Район"  name="area" id="area" required><br> -->
+              <input type="text" placeholder="Почтовый индекс" name="postcodeLegal" id="postcodeLegal"><br>
+              <!-- <input type="text" placeholder="Город/село*" name="town" id="town" required><br> -->
+              <select name="town" id="townLegal" required="" >
+                <option value="1">Город*</option>
+                <option value="ru">Выбор1</option>
+                <option value="kz">Выбор2</option>
+                <option value="uz">Выбор3</option>
+                </select>
           <input type="text" placeholder="Номер здания*" name="homeNumLegal" id="homeNumLegal" required>
           <input type="text" placeholder="Номер офиса" name="officeNumber" id="officeNumber" required>
             </div> 			
-          <button id="pageLegal3" data-btn-next="4" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/right-arrow.png" width=25" height="25" ></button>
-            <button id="backLegal3" data-btn-next="2" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+          <button id="pageLegal3" data-btn-next="4" class="btn btn-link"  type="submit" style="float: right;">Вперед<img alt="Вперед" src="img/forward.png" width=25" height="25" ></button>
+            <button id="backLegal3" data-btn-next="2" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
             <br>
             <br>
             <br><b>Есть аккаунт?</b>
@@ -348,44 +392,43 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
           
           <div>
                   <b>Номер телефона*</b><br>
-                  <select name="phoneTypeLegal" id="phoneTypeLegal">
+                  <select name="phoneTypeLegal1" id="phoneTypeLegal1">
               <option>Мобильный</option>
               <option>Офисный</option>
             </select>
-            <select name="phoneTypeLegal" id="phoneTypeLegal">
+            <select name="phoneCodeLegal1" id="phoneCodeLegal1">
                       <option>+ Код страны</option>
               <option>+996</option>
               <option>+7</option>
             </select>
-            <input type="text" placeholder="Пример:777007700" name="numberPhone" id="numberPhone" required>
+            <input type="text" name="phoneNumLegal1" id="phoneNumLegal1"/>
                   </div> 
                   <div>
-                    <button id="addNum2" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img src="img/addNumber.png" width =24px
+                    <button id="addNum2" data-btn-next="3" class="btn btn-link"  type="submit" style="float: left;"><img src="img/addPhone.png" width =24px
                       height = 15px>Добавить номер</button>
                   </div><br>
-            <div id = "extraNum2" class="extraNum2" style="display:none">
+            <div class="extraNum" id="addNumberLegal">
                       <select name="phoneTypeLegal2" id="phoneTypeLegal2">
                       <option>Мобильный</option>
               <option>Офисный</option>
               </select>
-              <select name="phoneTypeLegal2" id="phoneTypeLegal2">
+              <select name="phoneTypeLegal2">
                       <option>+ Код страны</option>
               <option>+996</option>
               <option>+7</option>
               </select>
-              <input type="text" placeholder="Пример:777007700" name="numberPhone" id="numberPhone" required>
+              <input type="text" name="phoneNumLegal2"/>
                   </div>
             <div>
                       <b>Электронная почта</b><br>
                       <input type="email" placeholder="example@gmail.com" name="emailLegal" id="emailLegal" required>
                    </div>
                        <b>Пароль</b><br>
-                       <input type="password" value="FakePSW" name="passwordLegal" id="passwordLegal"><br>
+                       <br>
                
               <button id="pageLegal4" data-btn-next="5" class="btn btn-primary btn-lg btn-block"  type="submit" style="float: center;">Зарегистрироваться</button>
-    
               <br>
-              <button id="backLegal4" data-btn-next="4" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+              <button id="backLegal4" data-btn-next="4" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
               <br>
               <br>
               <br><b>Есть аккаунт?</b>
@@ -411,45 +454,24 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
           </div> 
             <div>
               <b>Код признака перегистрации документа</b><br>
-            <input type="text" placeholder="Код перерегисрации документа" name="documentRegistrationCode" id="documentRegistrationCode">
+            <input type="text" placeholder="Код перерегисрации документа" name="documentRegistrationCode" id="">
           </div> 	
-          <button id="pageLegal5" data-btn-next="6" class="btn btn-primary btn-lg btn-block"  type="submit" style="float: center;">Зарегистрироваться</button>       
-             <button id="backLegal5" data-btn-next="5" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/left-arrow.png" width=25" height="25" >Назад</button>
+             <button id="backLegal5" data-btn-next="5" class="btn btn-link"  type="submit" style="float: left;"><img alt="Назад" src="img/back.png" width=25" height="25" >Назад</button>
           <br>
           <br>
-          <br><b>Есть аккаунт?</b>
+          <br><b id="account">Есть аккаунт?</b>
           <a href="login.jsp">Войти</a>
             </div>	
         </div>
-        <div id="id6" class="panel-body6">
-          <div class="form-fields">
-            <p style="text-align:center;"></p><img src="img/axelor.png" width="50px" class="logo"></p><br>
-            <h2 class="fs-title"><b>Предварительное информирование</b></h2>
-            <h3 class="fs-subtitle" style="color:rgb(18, 216, 107)">Проверьте электронную почту и подтвердите Ваши данные</h3>
-            <a href="login.jsp" ><p style="text-align:center;">Назад</p></a>
-          </div>
-        </div>
+       
+        <footer class="container-fluid" id="footerRegister" >
+          <p class="credit small"><%= copyright %></p>
+        </footer>
+        
         </form>
-           </div>
-                              
-           
-
-        <script>
-          const user = $(document.getElementById('msform'));
-              user.submit(function(e){
-                e.preventDefault();
-                var submit = true;
-                // evaluate the form using generic validaing
-                if( !validator.checkAll( $(this) ) ){
-                  submit = false;
-                }
-                if( submit )
-                  this.submit();
-                return false;
-              });
-  
-
-            </script> 
+      </div>
+     
+<script src="js/application.login.js"></script> 
   </body>
 </html>
 

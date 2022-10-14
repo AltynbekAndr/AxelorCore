@@ -17,7 +17,6 @@
  */
 package com.axelor.db;
 
-import com.axelor.auth.db.User;
 import com.axelor.db.mapper.Mapper;
 import com.axelor.db.mapper.Property;
 import com.axelor.db.mapper.PropertyType;
