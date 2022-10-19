@@ -51,6 +51,7 @@ Function<String, String> T = new Function<String, String>() {
 };
 
 
+
 String errorMsg = T.apply(request.getParameter(FormClient.ERROR_PARAMETER));
 
 String loginTitle = T.apply("Please sign in");
@@ -213,57 +214,6 @@ Set<String> centralClients = AuthPac4jModule.getCentralClients();
         });
         </script>
 
-<!-- <script>
-  $(document).ready(function(){
-    $("#msform").click(function(){
-      lastname //Фамилия
-      names  // Имя
-      middlename //Отчество
-
-      //физический лицо
-      registersAccount  //Кем регистрируется данный аккаунт
-      сitizenships //Гранжданство
-      passport //Идентификатор физического лица<
-      dateOfBirth//Дата рождения
-      issuningAuthority//Орган выдачи документа
-      documentIssueDate // Дата выдачи документа
-      documentExpirationDate //Срок истечение паспорта
-      country //Страна
-      region //Область
-
-      area  //Район
-      postcode //почтовый индекс
-      town  //Город/село
-      street //Название улицы
-      homeNum // Номер дома
-      apartments //Номер квартиры
-      phoneType // Номер телефона  .....
-      phoneType2 //Добавить номер
-      email  // Электронная почта
-      password //пароль
-
-      //юридическоелицо
-      registersAccountLegal //Кем регистрируется данный аккаунт
-      сitizenshipsLegal  //Страна регистрации юридического лица
-      companyLegal //Наименование компании
-      TaxID // Идентификтор налогоплательщика
-      countryLegal //Страна
-      regionLegal //Область
-      areaLegal  //Район
-      postcodeLegal //почтовый индекс
-      townLegal  //Город
-      homeNumLegal //Номер здания
-      officeNumber //Номер офиса
-      phoneTypeLegal //Номер телефона
-      phoneTypeLegal2 //Добавить номер
-      emailLegal //Электронная почта
-      passwordLegal //Пароль
-
-      includedPerson //Страна включившая лицо в реестр
-      registrationNumber //Регистрационный номер
-      documentRegistrationCode //Код перерегисрации документа
-
-</script> -->
 
 
   </body>

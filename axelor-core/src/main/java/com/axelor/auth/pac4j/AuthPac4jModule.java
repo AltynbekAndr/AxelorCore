@@ -20,8 +20,14 @@ package com.axelor.auth.pac4j;
 import com.axelor.app.AppSettings;
 import com.axelor.app.AvailableAppSettings;
 import com.axelor.auth.*;
+import com.axelor.auth.db.Country;
+import com.axelor.auth.db.AddressRepository;
+import com.axelor.auth.db.Region;
+import com.axelor.auth.db.User;
+import com.axelor.auth.db.repo.UserRepository;
 import com.axelor.auth.pac4j.service.RegistrationService;
 import com.axelor.common.StringUtils;
+import com.axelor.inject.Beans;
 import com.google.common.base.Preconditions;
 import com.google.inject.Key;
 import com.google.inject.Provides;
@@ -33,6 +39,7 @@ import io.buji.pac4j.engine.ShiroSecurityLogic;
 import io.buji.pac4j.filter.CallbackFilter;
 import io.buji.pac4j.filter.LogoutFilter;
 import io.buji.pac4j.filter.SecurityFilter;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
@@ -53,6 +60,7 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
+import org.hibernate.event.internal.AbstractSaveEventListener;
 import org.pac4j.core.authorization.authorizer.Authorizer;
 import org.pac4j.core.authorization.authorizer.csrf.CsrfAuthorizer;
 import org.pac4j.core.authorization.authorizer.csrf.CsrfTokenGenerator;
@@ -73,6 +81,7 @@ import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.http.client.indirect.FormClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wslite.json.JSONArray;
 
 public abstract class AuthPac4jModule extends AuthWebModule {
 
@@ -128,6 +137,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     addFilterChain("/callback", Key.get(AxelorCallbackFilter.class));
     addFilterChain("/callback/**", Key.get(AxelorCallbackFilter.class));
     addFilterChain("/**", Key.get(AxelorSecurityFilter.class));
+
   }
 
   protected abstract void configureClients();
@@ -538,7 +548,6 @@ public abstract class AuthPac4jModule extends AuthWebModule {
         axelorCallbackFilter.doFilter(request, response, chain);
         return;
       }
-
       chain.doFilter(request, response);
     }
 
@@ -554,6 +563,11 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException {
+
+      /*List<Country> countriesList  = Beans.get(AddressRepository.class).getCountries();
+      request.setAttribute("countriesList",countriesList);*/
+
+
       chain.doFilter(request, response);
     }
 
@@ -572,7 +586,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
       String contenType = request.getContentType();
 
-      // Fiz
+      /*// Fiz
       String registersAccount =
           request.getParameter("registersAccount"); // Кем регистрируется данный аккаунт
       // Yur
@@ -581,11 +595,25 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
       if (contenType.equals("application/x-www-form-urlencoded")) {
         if (registersAccount != null) {
-          createIndividualUser(request, authService);
+          //createIndividualUser(request, authService);
         } else if (registersAccountLegal != null) {
-          createOrganization(request, authService);
+          //createOrganization(request, authService);
         }
-      }
+      }*/
+
+      CommonProfile profile = new CommonProfile();
+      profile.setClientName("altynbekcommonprofile");
+      Beans.get(AuthPac4jUserService.class).saveUser(profile);
+
+      User user = new User();
+      user.setId(2l);
+      user.setCode("Altynbek");
+      user.setName("Altynbekname");
+      user.setPassword("199123,.dsvsdv");
+
+      UserRepository.of(User.class).save(user);
+
+      //AbstractSaveEventListener globalAuditInterceptor;
 
       /*try {
         chain.doFilter(request, response);

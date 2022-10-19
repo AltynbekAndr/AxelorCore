@@ -32,16 +32,16 @@
   //     var pageLegal3=$("#pageLegal3").val();
   //     var confirmation=$("#confirmation").val();
   //     var pageLegal4=$("#pageLegal4").val();
-  //     var pageLegal5=$("#pageLegal5").val();      
-  //     var backLegal2=$("#backLegal2").val(); 
-  //     var backLegal3=$("#backLegal3").val(); 
-  //     var backLegal4=$("#backLegal4").val(); 
-  //     var backLegal5=$("#backLegal5").val(); 
+  //     var pageLegal5=$("#pageLegal5").val();
+  //     var backLegal2=$("#backLegal2").val();
+  //     var backLegal3=$("#backLegal3").val();
+  //     var backLegal4=$("#backLegal4").val();
+  //     var backLegal5=$("#backLegal5").val();
   //     var authorized=$("#authorized").val();
   //     var cityChoose=$("#cityChoose").val();
-    
+
   //   });
-    
+
   // });
 
   // var item=$(".indivSelect").val();
@@ -51,42 +51,42 @@
 
             id1.hidden=false
             cityChoose.hidden = true;
-            indiv2.hidden = true;    
+            indiv2.hidden = true;
             indiv3.hidden = true;
             indiv4.hidden = true;
             legal2.hidden = true;
             legal3.hidden = true;
             legal4.hidden = true;
-            legal5.hidden = true; 
+            legal5.hidden = true;
             addNumberIndv.hidden=true;
             addNumberLegal.hidden=true;
-            
-           
-            
+
+
+
 
       pageOne.onclick = function() {
-        if(lastname.value==='' || names.value==='') { 
+        if(lastname.value==='' || names.value==='') {
           pageOne=false;
         }else{
           id1.hidden = true;
           cityChoose.hidden = false;
           indiv2.hidden = false;
         }
-    } 
+    }
 
     document.querySelector('#individual').onclick = function(){
 
       legal2.hidden = true;
       indiv2.hidden = false;
-      
+
       pageIndv2.onclick = function() {
         if (passport.value === "" || issuningAuthority.value === "" ||  ($('#registersAccount').val()== 1) || ($('#dateOfBirth').val()==="")){
-          
+
           return;
         }else if (($('#сitizenships').val()== 1) || ($('#documentIssueDate').val()==="") ||  ($('#documentExpirationDate').val()==="") ){
           return;
         }
-        else{ 
+        else{
         indiv2.hidden = true;
         cityChoose.hidden = true;
         indiv3.hidden = false;
@@ -99,7 +99,7 @@
           if (($('#countryIndiv').val()== 1) || ($('#regionIndiv').val()==1) ||  ($('#areaIndiv').val()==1)  ||  ($('#townIndiv').val()==1) ){
             return;
           }else{
-          
+
          indiv3.hidden = true;
           indiv4.hidden = false;
           cityChoose.hidden = true;
@@ -110,7 +110,7 @@
           addNumberIndv.hidden=false;
         }
 
-     
+
           pageIndv4.onclick = function() {
             if($('emailIndiv')==="" || ($('#phoneCodeIndiv1').val()==1) ||  ($('#phoneNumIndiv1').val()=="") ){
               return;
@@ -123,29 +123,29 @@
           }
           backIndv2.onclick = function() {
             indiv2.hidden = true;
-            id1.hidden = false; 
+            id1.hidden = false;
             cityChoose.hidden = true;
           }
           backIndv3.onclick = function() {
             indiv3.hidden = true;
-            indiv2.hidden = false; 
+            indiv2.hidden = false;
             cityChoose.hidden = false;
           }
 
           backIndv4.onclick = function() {
             indiv4.hidden = true;
-            indiv3.hidden = false; 
+            indiv3.hidden = false;
             cityChoose.hidden = true;
           }
-        
+
     }
 
 
     document.querySelector('#legal').onclick = function(){
-     
+
       indiv2.hidden = true;
         legal2.hidden = false;
-      
+
 
         pageLegal2.onclick = function() {
           if (($("#registersAccountLegal").val()==1) || ($("#сitizenshipsLegal").val()==1)){
@@ -187,31 +187,25 @@
                form.method = "POST";
                form.submit();
             }
-            
+
             backLegal2.onclick = function() {
               legal2.hidden = true;
-              id1.hidden = false; 
+              id1.hidden = false;
               cityChoose.hidden = true;
             }
             backLegal3.onclick = function() {
               legal3.hidden = true;
-              legal2.hidden = false; 
+              legal2.hidden = false;
               cityChoose.hidden = false;
             }
             backLegal4.onclick = function() {
               legal4.hidden = true;
-              legal3.hidden = false; 
+              legal3.hidden = false;
               cityChoose.hidden = true;
               }
               backLegal5.onclick = function() {
                 legal5.hidden = true;
-                legal4.hidden = false; 
+                legal4.hidden = false;
                 cityChoose.hidden = true;
                 }
               }
-    
-
-       
-           
-      
-
