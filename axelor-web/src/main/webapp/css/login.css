@@ -52,13 +52,14 @@ body {
 #registration input {
   padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 8px!important;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
+
 }
 .radio{
   width: 0;
@@ -76,24 +77,27 @@ body {
   white-space: nowrap;
 }
 #registration select{
+  height: 32px!important;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 8px!important;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
+
 }
-#authorization input, #authorization select {
+#authorization input {
   padding: 15px;
-  border-radius: 3px;
+  border-radius: 8px!important;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
+
 }
 #registration .action-button, #authorization .action-button {
   width: 100px;
@@ -333,14 +337,6 @@ body > footer > p a:visited {
   margin: 4% 4%;
   padding-bottom: 40px;
 }
-/* #footerRegister, #footerPassword {
-  text-align: center;
-  color:#FFFDFD;
-  width: 380px;
-  height: 54px;
-  margin: 4% 4%;
-  padding-bottom: 40px;
-} */
 .password {
   margin: 15px auto;
   position: relative;
@@ -358,4 +354,71 @@ body > footer > p a:visited {
 }
 .password-control.view {
   background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+#townLegal{
+  /* width: 174px!important; */
+  margin-left: 5px;
+}
+#postcodeLegal{
+  width: 150px!important;
+}
+#buttonForward{
+position: absolute;
+bottom: 35px;
+right: 5%;
+left: 5%;
+text-align: right;
+justify-content:space-between;
+
+}
+#buttonBack{
+  position: absolute;
+  bottom: 35px;
+  /* right: 5%; */
+  left: 5%;
+  text-align: left;
+  justify-content:space-between;
+}
+.signDown {
+  position: absolute;
+  bottom: 10px;
+  right: 5%;
+  left: 5%;
+  padding-left:15px ;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 40px;
+}
+
+
+
+#confirmation{
+height: 48px;
+left: 24px;
+background: #E7E7EA;
+border: 1px solid #A9AFD2;
+border-radius: 8px!important;
+}
+#confirmation2{
+font-family: 'Mulish';
+font-weight: 700;
+font-size: 12px;
+line-height: 20px;
+letter-spacing: 0.3px;
+text-transform: uppercase;
+
+color: #71737D;
+}
+#pageLegal4, #pageIndv4{
+height: 48px;
+left: 30px;
+background: #336596;
+border-radius: 8px!important;
+}
+.regions {
+  display: none;
+}
+
+.active {
+  display: block;
 }

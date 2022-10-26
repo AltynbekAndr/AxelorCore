@@ -20,14 +20,8 @@ package com.axelor.auth.pac4j;
 import com.axelor.app.AppSettings;
 import com.axelor.app.AvailableAppSettings;
 import com.axelor.auth.*;
-import com.axelor.auth.db.Country;
-import com.axelor.auth.db.AddressRepository;
-import com.axelor.auth.db.Region;
-import com.axelor.auth.db.User;
-import com.axelor.auth.db.repo.UserRepository;
 import com.axelor.auth.pac4j.service.RegistrationService;
 import com.axelor.common.StringUtils;
-import com.axelor.inject.Beans;
 import com.google.common.base.Preconditions;
 import com.google.inject.Key;
 import com.google.inject.Provides;
@@ -39,17 +33,21 @@ import io.buji.pac4j.engine.ShiroSecurityLogic;
 import io.buji.pac4j.filter.CallbackFilter;
 import io.buji.pac4j.filter.LogoutFilter;
 import io.buji.pac4j.filter.SecurityFilter;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +58,6 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
-import org.hibernate.event.internal.AbstractSaveEventListener;
 import org.pac4j.core.authorization.authorizer.Authorizer;
 import org.pac4j.core.authorization.authorizer.csrf.CsrfAuthorizer;
 import org.pac4j.core.authorization.authorizer.csrf.CsrfTokenGenerator;
@@ -81,14 +78,13 @@ import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.http.client.indirect.FormClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import wslite.json.JSONArray;
 
 public abstract class AuthPac4jModule extends AuthWebModule {
 
   @SuppressWarnings("rawtypes")
   private static final List<Client> clientList = new ArrayList<>();
 
-  private static final Map<String, Map<String, String>> clientInfo = new HashMap<>();
+  static final Map<String, Map<String, String>> clientInfo = new HashMap<>();
   private static final Set<String> centralClientNames = new LinkedHashSet<>();
 
   private static String callbackUrl;
@@ -104,7 +100,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
   private static final String HASH_LOCATION_PARAMETER = "hash_location";
 
   private static final Logger logger =
-      LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+          LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
   public AuthPac4jModule(ServletContext servletContext) {
     super(servletContext);
@@ -125,7 +121,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     configureClients();
 
     final Multibinder<AuthenticationListener> listenerMultibinder =
-        Multibinder.newSetBinder(binder(), AuthenticationListener.class);
+            Multibinder.newSetBinder(binder(), AuthenticationListener.class);
     listenerMultibinder.addBinding().to(AuthPac4jListener.class);
 
     bind(Config.class).toProvider(ConfigProvider.class);
@@ -137,14 +133,13 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     addFilterChain("/callback", Key.get(AxelorCallbackFilter.class));
     addFilterChain("/callback/**", Key.get(AxelorCallbackFilter.class));
     addFilterChain("/**", Key.get(AxelorSecurityFilter.class));
-
   }
 
   protected abstract void configureClients();
 
   protected void addLocalClient(Client<?, ?> client) {
     Preconditions.checkState(
-        centralClientNames.isEmpty(), "Local clients must be added before central clients.");
+            centralClientNames.isEmpty(), "Local clients must be added before central clients.");
     addClient(client);
     logger.info("Added local client: {}", client.getName());
   }
@@ -201,9 +196,9 @@ public abstract class AuthPac4jModule extends AuthWebModule {
       logoutUrl = settings.get(AvailableAppSettings.AUTH_LOGOUT_URL, null);
       if (StringUtils.isBlank(logoutUrl)) {
         logoutUrl =
-            AuthPac4jModuleCas.isEnabled()
-                ? settings.get(AvailableAppSettings.AUTH_CAS_LOGOUT_URL, getRelativeBaseURL())
-                : getRelativeBaseURL();
+                AuthPac4jModuleCas.isEnabled()
+                        ? settings.get(AvailableAppSettings.AUTH_CAS_LOGOUT_URL, getRelativeBaseURL())
+                        : getRelativeBaseURL();
       }
       if (StringUtils.isBlank(logoutUrl)) {
         logoutUrl = ".";
@@ -220,7 +215,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
   @Provides
   protected DefaultWebSecurityManager provideDefaultSecurityManager(
-      Collection<Realm> realms, Set<AuthenticationListener> authenticationListeners) {
+          Collection<Realm> realms, Set<AuthenticationListener> authenticationListeners) {
     DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(realms);
     ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
     authenticator.setRealms(realms);
@@ -235,8 +230,8 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
   protected static boolean isXHR(HttpServletRequest request) {
     return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"))
-        || "application/json".equals(request.getHeader("Accept"))
-        || "application/json".equals(request.getHeader("Content-Type"));
+            || "application/json".equals(request.getHeader("Accept"))
+            || "application/json".equals(request.getHeader("Content-Type"));
   }
 
   protected static boolean isNativeClient(WebContext context) {
@@ -321,10 +316,10 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     public AxelorLogoutFilter(Config config) {
       final AppSettings settings = AppSettings.get();
       final String logoutUrlPattern =
-          settings.get(AvailableAppSettings.AUTH_LOGOUT_URL_PATTERN, null);
+              settings.get(AvailableAppSettings.AUTH_LOGOUT_URL_PATTERN, null);
       final boolean localLogout = settings.getBoolean(AvailableAppSettings.AUTH_LOGOUT_LOCAL, true);
       final boolean centralLogout =
-          settings.getBoolean(AvailableAppSettings.AUTH_LOGOUT_CENTRAL, false);
+              settings.getBoolean(AvailableAppSettings.AUTH_LOGOUT_CENTRAL, false);
 
       setConfig(config);
       setDefaultUrl(getLogoutUrl());
@@ -332,33 +327,33 @@ public abstract class AuthPac4jModule extends AuthWebModule {
       setLocalLogout(localLogout);
       setCentralLogout(centralLogout);
       setLogoutLogic(
-          new DefaultLogoutLogic<Object, J2EContext>() {
+              new DefaultLogoutLogic<Object, J2EContext>() {
 
-            @Override
-            public Object perform(
-                J2EContext context,
-                Config config,
-                HttpActionAdapter<Object, J2EContext> httpActionAdapter,
-                String defaultUrl,
-                String inputLogoutUrlPattern,
-                Boolean inputLocalLogout,
-                Boolean inputDestroySession,
-                Boolean inputCentralLogout) {
+                @Override
+                public Object perform(
+                        J2EContext context,
+                        Config config,
+                        HttpActionAdapter<Object, J2EContext> httpActionAdapter,
+                        String defaultUrl,
+                        String inputLogoutUrlPattern,
+                        Boolean inputLocalLogout,
+                        Boolean inputDestroySession,
+                        Boolean inputCentralLogout) {
 
-              AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
+                  AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
 
-              // Destroy web session.
-              return super.perform(
-                  context,
-                  config,
-                  httpActionAdapter,
-                  defaultUrl,
-                  inputLogoutUrlPattern,
-                  inputLocalLogout,
-                  true,
-                  inputCentralLogout);
-            }
-          });
+                  // Destroy web session.
+                  return super.perform(
+                          context,
+                          config,
+                          httpActionAdapter,
+                          defaultUrl,
+                          inputLogoutUrlPattern,
+                          inputLocalLogout,
+                          true,
+                          inputCentralLogout);
+                }
+              });
     }
   }
 
@@ -377,76 +372,76 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
       setDefaultClient(config.getClients().getClients().get(0).getName());
       setCallbackLogic(
-          new ShiroCallbackLogic<Object, J2EContext>() {
+              new ShiroCallbackLogic<Object, J2EContext>() {
 
-            @Override
-            public Object perform(
-                J2EContext context,
-                Config config,
-                HttpActionAdapter<Object, J2EContext> httpActionAdapter,
-                String inputDefaultUrl,
-                Boolean inputSaveInSession,
-                Boolean inputMultiProfile,
-                Boolean inputRenewSession,
-                String client) {
+                @Override
+                public Object perform(
+                        J2EContext context,
+                        Config config,
+                        HttpActionAdapter<Object, J2EContext> httpActionAdapter,
+                        String inputDefaultUrl,
+                        Boolean inputSaveInSession,
+                        Boolean inputMultiProfile,
+                        Boolean inputRenewSession,
+                        String client) {
 
-              AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
+                  AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
 
-              try {
-                context.getRequest().setCharacterEncoding("UTF-8");
-              } catch (UnsupportedEncodingException e) {
-                logger.error(e.getMessage(), e);
-              }
+                  try {
+                    context.getRequest().setCharacterEncoding("UTF-8");
+                  } catch (UnsupportedEncodingException e) {
+                    logger.error(e.getMessage(), e);
+                  }
 
-              return super.perform(
-                  context,
-                  config,
-                  httpActionAdapter,
-                  inputDefaultUrl,
-                  inputSaveInSession,
-                  inputMultiProfile,
-                  inputRenewSession,
-                  client);
-            }
+                  return super.perform(
+                          context,
+                          config,
+                          httpActionAdapter,
+                          inputDefaultUrl,
+                          inputSaveInSession,
+                          inputMultiProfile,
+                          inputRenewSession,
+                          client);
+                }
 
-            @SuppressWarnings("unchecked")
-            @Override
-            protected HttpAction redirectToOriginallyRequestedUrl(
-                J2EContext context, String defaultUrl) {
+                @SuppressWarnings("unchecked")
+                @Override
+                protected HttpAction redirectToOriginallyRequestedUrl(
+                        J2EContext context, String defaultUrl) {
 
-              // Add CSRF token cookie and header
-              AxelorCsrfTokenGeneratorAuthorizer csrfTokenAuthorizer =
-                  (AxelorCsrfTokenGeneratorAuthorizer)
-                      config.getAuthorizers().get(CSRF_TOKEN_AUTHORIZER_NAME);
-              csrfTokenAuthorizer.addResponseCookieAndHeader(context);
+                  // Add CSRF token cookie and header
+                  AxelorCsrfTokenGeneratorAuthorizer csrfTokenAuthorizer =
+                          (AxelorCsrfTokenGeneratorAuthorizer)
+                                  config.getAuthorizers().get(CSRF_TOKEN_AUTHORIZER_NAME);
+                  csrfTokenAuthorizer.addResponseCookieAndHeader(context);
 
-              // if xhr, return status code only
-              if (isXHR(context)) {
-                return HttpAction.status(HttpConstants.OK, context);
-              }
+                  // if xhr, return status code only
+                  if (isXHR(context)) {
+                    return HttpAction.status(HttpConstants.OK, context);
+                  }
 
-              final String requestedUrl =
-                  (String) context.getSessionStore().get(context, Pac4jConstants.REQUESTED_URL);
+                  final String requestedUrl =
+                          (String) context.getSessionStore().get(context, Pac4jConstants.REQUESTED_URL);
 
-              String redirectUrl = defaultUrl;
-              if (StringUtils.notBlank(requestedUrl)) {
-                context.getSessionStore().set(context, Pac4jConstants.REQUESTED_URL, null);
-                redirectUrl = requestedUrl;
-              }
+                  String redirectUrl = defaultUrl;
+                  if (StringUtils.notBlank(requestedUrl)) {
+                    context.getSessionStore().set(context, Pac4jConstants.REQUESTED_URL, null);
+                    redirectUrl = requestedUrl;
+                  }
 
-              String hashLocation = context.getRequestParameter(HASH_LOCATION_PARAMETER);
-              if (StringUtils.isBlank(hashLocation)) {
-                hashLocation =
-                    (String) context.getSessionStore().get(context, HASH_LOCATION_PARAMETER);
-              }
-              if (StringUtils.notBlank(hashLocation)) {
-                redirectUrl = redirectUrl + hashLocation;
-              }
+                  String hashLocation = context.getRequestParameter(HASH_LOCATION_PARAMETER);
+                  if (StringUtils.isBlank(hashLocation)) {
+                    hashLocation =
+                            (String) context.getSessionStore().get(context, HASH_LOCATION_PARAMETER);
+                  }
+                  if (StringUtils.notBlank(hashLocation)) {
+                    redirectUrl = redirectUrl + hashLocation;
+                  }
 
-              logger.debug("redirectUrl: {}", redirectUrl);
-              return HttpAction.redirect(context, redirectUrl);
-            }
-          });
+                  logger.debug("redirectUrl: {}", redirectUrl);
+                  return HttpAction.redirect(context, redirectUrl);
+                }
+              });
     }
   }
 
@@ -458,60 +453,60 @@ public abstract class AuthPac4jModule extends AuthWebModule {
       setAuthorizers(config.getAuthorizers().keySet().stream().collect(Collectors.joining(",")));
 
       final String clientNames =
-          config.getClients().getClients().stream()
-              .map(Client::getName)
-              .collect(Collectors.joining(","));
+              config.getClients().getClients().stream()
+                      .map(Client::getName)
+                      .collect(Collectors.joining(","));
 
       setClients(clientNames);
 
       setSecurityLogic(
-          new ShiroSecurityLogic<Object, J2EContext>() {
+              new ShiroSecurityLogic<Object, J2EContext>() {
 
-            @Override
-            public Object perform(
-                J2EContext context,
-                Config config,
-                SecurityGrantedAccessAdapter<Object, J2EContext> securityGrantedAccessAdapter,
-                HttpActionAdapter<Object, J2EContext> httpActionAdapter,
-                String clients,
-                String authorizers,
-                String matchers,
-                Boolean inputMultiProfile,
-                Object... parameters) {
+                @Override
+                public Object perform(
+                        J2EContext context,
+                        Config config,
+                        SecurityGrantedAccessAdapter<Object, J2EContext> securityGrantedAccessAdapter,
+                        HttpActionAdapter<Object, J2EContext> httpActionAdapter,
+                        String clients,
+                        String authorizers,
+                        String matchers,
+                        Boolean inputMultiProfile,
+                        Object... parameters) {
 
-              AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
+                  AuthFilter.setSameSiteNone(context.getRequest(), context.getResponse());
 
-              return super.perform(
-                  context,
-                  config,
-                  securityGrantedAccessAdapter,
-                  httpActionAdapter,
-                  clients,
-                  authorizers,
-                  matchers,
-                  inputMultiProfile,
-                  parameters);
-            }
+                  return super.perform(
+                          context,
+                          config,
+                          securityGrantedAccessAdapter,
+                          httpActionAdapter,
+                          clients,
+                          authorizers,
+                          matchers,
+                          inputMultiProfile,
+                          parameters);
+                }
 
-            // Don't save requested URL if redirected to a non-default central client,
-            // so that the requested URL saved before redirection will be used instead.
-            @Override
-            @SuppressWarnings({"rawtypes", "unchecked"})
-            protected void saveRequestedUrl(J2EContext context, List<Client> currentClients) {
-              final String hashLocation = context.getRequestParameter(HASH_LOCATION_PARAMETER);
-              if (StringUtils.notBlank(hashLocation)) {
-                context.getSessionStore().set(context, HASH_LOCATION_PARAMETER, hashLocation);
-              }
+                // Don't save requested URL if redirected to a non-default central client,
+                // so that the requested URL saved before redirection will be used instead.
+                @Override
+                @SuppressWarnings({"rawtypes", "unchecked"})
+                protected void saveRequestedUrl(J2EContext context, List<Client> currentClients) {
+                  final String hashLocation = context.getRequestParameter(HASH_LOCATION_PARAMETER);
+                  if (StringUtils.notBlank(hashLocation)) {
+                    context.getSessionStore().set(context, HASH_LOCATION_PARAMETER, hashLocation);
+                  }
 
-              final String clientName =
-                  context.getRequestParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER);
-              if (StringUtils.isBlank(clientName)
-                  || currentClients.size() != 1
-                  || !centralClientNames.contains(currentClients.get(0).getName())) {
-                super.saveRequestedUrl(context, currentClients);
-              }
-            }
-          });
+                  final String clientName =
+                          context.getRequestParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER);
+                  if (StringUtils.isBlank(clientName)
+                          || currentClients.size() != 1
+                          || !centralClientNames.contains(currentClients.get(0).getName())) {
+                    super.saveRequestedUrl(context, currentClients);
+                  }
+                }
+              });
     }
   }
 
@@ -524,7 +519,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
       AuthFilter.setSameSiteNone((HttpServletRequest) request, (HttpServletResponse) response);
 
@@ -537,7 +532,7 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
       // if already authenticated or if form login is not configured redirect to base url
       if (authenticated
-          || AuthPac4jModule.clientList.stream()
+              || AuthPac4jModule.clientList.stream()
               .noneMatch(client -> client instanceof FormClient)) {
         ((HttpServletResponse) response).sendRedirect(".");
         return;
@@ -562,11 +557,10 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
       /*List<Country> countriesList  = Beans.get(AddressRepository.class).getCountries();
       request.setAttribute("countriesList",countriesList);*/
-
 
       chain.doFilter(request, response);
     }
@@ -584,67 +578,106 @@ public abstract class AuthPac4jModule extends AuthWebModule {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+
       String contenType = request.getContentType();
 
-      /*// Fiz
+      // Fiz
       String registersAccount =
-          request.getParameter("registersAccount"); // Кем регистрируется данный аккаунт
+              request.getParameter("registersAccount"); // Кем регистрируется данный аккаунт
       // Yur
       String registersAccountLegal =
-          request.getParameter("registersAccountLegal"); // Кем регистрируется данный аккаунт
+              request.getParameter("registersAccountLegal"); // Кем регистрируется данный аккаунт
+      // AbstractSaveEventListener globalAuditInterceptor;
+      try {
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        httpServletResponse.sendRedirect("/axelor-sanarip-tamga-6.3.0/login.jsp");
+        Properties props = new Properties();
+        props.put("mail.transport.protocol", "smtps");
+        props.put("mail.smtps.host", "smtp.gmail.com");
+        props.put("mail.smtps.auth", "true");
+        props.put("mail.smtp.sendpartial", "true");
+        Session session = Session.getDefaultInstance(props);
+        // создаем сообщение
+        MimeMessage message = new MimeMessage(session);
 
-      if (contenType.equals("application/x-www-form-urlencoded")) {
-        if (registersAccount != null) {
-          //createIndividualUser(request, authService);
-        } else if (registersAccountLegal != null) {
-          //createOrganization(request, authService);
+        // устанавливаем тему письма
+        message.setSubject("Ваш пароль");
+
+
+        // добавляем текст письма
+        List<Character> rnd = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+          rnd.add((char) ThreadLocalRandom.current().nextInt('0','9'));
+          rnd.add((char) ThreadLocalRandom.current().nextInt('a','z'));
+          rnd.add((char) ThreadLocalRandom.current().nextInt('A','Z'));
         }
-      }*/
+        Collections.shuffle(rnd);
+        String password = rnd.stream().limit(10).map(String::valueOf).collect(Collectors.joining());
 
-      CommonProfile profile = new CommonProfile();
-      profile.setClientName("altynbekcommonprofile");
-      Beans.get(AuthPac4jUserService.class).saveUser(profile);
 
-      User user = new User();
-      user.setId(2l);
-      user.setCode("Altynbek");
-      user.setName("Altynbekname");
-      user.setPassword("199123,.dsvsdv");
 
-      UserRepository.of(User.class).save(user);
+        // указываем получателя
+        String email = request.getParameter("email");
+        String emailLegal = request.getParameter("emailLegal");
+        if(email !=null && !email.isEmpty()) {
+          message.addRecipient(
+                  Message.RecipientType.TO, new InternetAddress(email));
+          message.setText("Это ваш логин на сайт:\n"+ email
+                         +"\nЭто ваш пароль на сайт:\n"+ password);
+        }
+        else {
+          message.addRecipient(
+                  Message.RecipientType.TO, new InternetAddress(emailLegal));
+          message.setText("Это ваш логин на сайт:\n"+ emailLegal
+                  +"\nЭто ваш пароль на сайт:\n"+ password);
+        }
+        // указываем дату отправления
+        message.setSentDate(new Date());
+        // логин и пароль gmail пользователя
+        String userLogin = "kamcybekovnurcik@gmail.com";
+        String userPassword = "uhavxlsslxbigmfx";
 
-      //AbstractSaveEventListener globalAuditInterceptor;
+        // авторизуемся на сервере:
+        Transport transport = session.getTransport();
+        transport.connect("smtp.gmail.com", 465, userLogin, userPassword);
 
-      /*try {
-        chain.doFilter(request, response);
+        // отправляем сообщение:
+        transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+
+        if (contenType.equals("application/x-www-form-urlencoded")) {
+          if (registersAccount != null && !registersAccount.isEmpty()) {
+            createIndividualUser(request, authService,password);
+          } else if (registersAccountLegal != null) {
+            createOrganization(request, authService,password);
+          }
+        }
       } catch (Exception e) {
         e.printStackTrace();
-      }*/
+      }
     }
 
     @Override
     public void destroy() {}
   }
 
-  public static void createIndividualUser(ServletRequest request, AuthService authService) {
+  public static void createIndividualUser(ServletRequest request, AuthService authService,String password) {
 
     /*
     Enumeration<String> parameterNames =  request.getParameterNames();
     while (parameterNames.hasMoreElements()) {
       System.out.println(parameterNames.nextElement());
     }*/
-
     String сitizenships = request.getParameter("сitizenships"); // Гранжданство
     String passport = request.getParameter("passport"); // Идентификатор физического лица
     String dateOfBirth = request.getParameter("dateOfBirth"); // Дата рождения
     String documentIssueDate = request.getParameter("documentIssueDate"); // Дата выдачи документа
     String documentExpirationDate =
-        request.getParameter("documentExpirationDate"); // Срок истечение паспорта
+            request.getParameter("documentExpirationDate"); // Срок истечение паспорта
 
     String issuningAuthority = request.getParameter("issuningAuthority"); // Орган выдачи документа
     String country = request.getParameter("country"); // Страна
     String region = request.getParameter("region"); // Область
-    String area = request.getParameter("area"); // Район
+    // String area = request.getParameter("area"); // Район
     String postcode = request.getParameter("postcode"); // почтовый индекс
     String town = request.getParameter("town"); // Город/село
     String street = request.getParameter("street"); // Название улицы
@@ -653,59 +686,23 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     String phoneType = request.getParameter("phoneType"); // Номер телефона
     String phoneType2 = request.getParameter("phoneType2"); // Добавить номер
     String email = request.getParameter("email"); // Электронная почта
-    String password = request.getParameter("password"); // пароль
     String names = request.getParameter("names"); // имя
     String lastname = request.getParameter("lastname"); // фио
     String middlename = request.getParameter("middlename"); // отчество
     password = authService.encrypt(password);
-
     RegistrationService registrationService = new RegistrationService();
     Connection connection = registrationService.getConnection();
+    registrationService.createUser(password, email, names, email, connection);
 
-    // Не обяз.е поля
-
-    // Юр
-    // Отчество
-
-    // почта индекс,
-    // номер здания,
-    // офис
-    // Второй телефон
-
-    // физ лицо
-
-    // почта индекс,
-    // номер дома,
-    // Название улицы
-    // Номер квартиры
-    // Второй телефон
-
-    int employee_id =
-        registrationService.createEmployee(
-            dateOfBirth,
-            phoneType,
-            phoneType2,
-            names,
-            сitizenships,
-            town,
-            country,
-            area,
-            passport,
-            documentExpirationDate,
-            documentIssueDate,
-            issuningAuthority,
-            connection);
-    registrationService.createUser(password, email, names, email, employee_id, connection);
   }
-
-  public static void createOrganization(ServletRequest request, AuthService authService) {
+  public static void createOrganization(ServletRequest request, AuthService authService,String password) {
     String registersAccountLegal = request.getParameter("registersAccountLegal");
     String сitizenshipsLegal = request.getParameter("сitizenshipsLegal");
     String companyLegal = request.getParameter("companyLegal");
     String TaxID = request.getParameter("TaxID");
     String countryLegal = request.getParameter("countryLegal");
     String regionLegal = request.getParameter("regionLegal");
-    String areaLegal = request.getParameter("areaLegal");
+    // String areaLegal = request.getParameter("areaLegal");
     String postcodeLegal = request.getParameter("postcodeLegal");
     String townLegal = request.getParameter("townLegal");
     String homeNumLegal = request.getParameter("homeNumLegal");
@@ -713,32 +710,17 @@ public abstract class AuthPac4jModule extends AuthWebModule {
     String phoneTypeLegal = request.getParameter("phoneTypeLegal");
     String phoneTypeLegal2 = request.getParameter("phoneTypeLegal2");
     String emailLegal = request.getParameter("emailLegal");
-    String passwordLegal = request.getParameter("passwordLegal");
+//    String passwordLegal = request.getParameter("passwordLegal");
     String includedPerson = request.getParameter("includedPerson");
     String registrationNumber = request.getParameter("registrationNumber");
     String documentRegistrationCode = request.getParameter("documentRegistrationCode");
-
-    passwordLegal = authService.encrypt(passwordLegal);
+    String names = request.getParameter("names"); // имя
+    String lastname = request.getParameter("lastname"); // фио
+    String middlename = request.getParameter("middlename"); // отчество
+    password = authService.encrypt(password);
 
     RegistrationService registrationService = new RegistrationService();
     Connection connection = registrationService.getConnection();
-
-    int employee_id =
-        registrationService.createEmployee(
-            "0001-01-01",
-            phoneTypeLegal,
-            phoneTypeLegal2,
-            includedPerson,
-            сitizenshipsLegal,
-            townLegal,
-            countryLegal,
-            areaLegal,
-            registrationNumber,
-            "0001-01-01",
-            "0001-01-01",
-            registersAccountLegal,
-            connection);
-    registrationService.createUser(
-        passwordLegal, emailLegal, includedPerson, emailLegal, employee_id, connection);
+    registrationService.createUser(password, emailLegal, names, emailLegal, connection);
   }
 }

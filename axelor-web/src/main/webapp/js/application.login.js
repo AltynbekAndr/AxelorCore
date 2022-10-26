@@ -80,10 +80,10 @@
       indiv2.hidden = false;
 
       pageIndv2.onclick = function() {
-        if (passport.value === "" || issuningAuthority.value === "" ||  ($('#registersAccount').val()== 1) || ($('#dateOfBirth').val()==="")){
+        if (passport.value === "" || issuningAuthority.value === "" ||  ($('#registersAccount').val()==="") || ($('#dateOfBirth').val()==="")){
 
           return;
-        }else if (($('#сitizenships').val()== 1) || ($('#documentIssueDate').val()==="") ||  ($('#documentExpirationDate').val()==="") ){
+        }else if (($('#сitizenships').val()==="") || ($('#documentIssueDate').val()==="") ||  ($('#documentExpirationDate').val()==="") ){
           return;
         }
         else{
@@ -96,7 +96,7 @@
 
 
         pageIndv3.onclick = function() {
-          if (($('#countryIndiv').val()== 1) || ($('#regionIndiv').val()==1) ||  ($('#areaIndiv').val()==1)  ||  ($('#townIndiv').val()==1) ){
+          if (($('#countryIndiv').val()==="") ||  ($('#townIndiv').val()==="") ){
             return;
           }else{
 
@@ -112,12 +112,12 @@
 
 
           pageIndv4.onclick = function() {
-            if($('emailIndiv')==="" || ($('#phoneCodeIndiv1').val()==1) ||  ($('#phoneNumIndiv1').val()=="") ){
+            if($('emailIndiv')==="" || ($('#phoneCodeIndiv1').val()==="") ||  ($('#phoneNumIndiv1').val()==="")){
               return;
             }
-            alert("Отправить ваши данные");
+            alert("Отправить ваши данные и отправить ваш пароль на почту");
             let form = document.getElementById("registration");
-             form.action="http://localhost:8082/registration";
+             form.action="http://localhost:8080/axelor-sanarip-tamga-6.3.0/registration";
              form.method = "POST";
              form.submit();
           }
@@ -148,7 +148,7 @@
 
 
         pageLegal2.onclick = function() {
-          if (($("#registersAccountLegal").val()==1) || ($("#сitizenshipsLegal").val()==1)){
+          if (($("#registersAccountLegal").val()==="") || ($("#сitizenshipsLegal").val()==="") ){
             return;
           }else if($("#companyLegal").val()===""){
             return;
@@ -161,7 +161,7 @@
           pageLegal3.onclick = function() {
             if ($("#adressLegal").val().length < 5){
               return;
-            }else if(($("#countryLegal").val()==1)|| ($("#townLegal").val()==1)||($("#areaLegal").val()==1)||($("#regionLegal").val)==1){
+            }else if(($("#countryLegal").val()==="")|| ($("#townLegal").val()==="")){
               return;
             }
             legal3.hidden = true;
@@ -178,12 +178,12 @@
         }
 
             pageLegal4.onclick = function() {
-              if($('emailLegal').val()==="" || ($('#phoneCodeLegal1').val()==1) ||  ($('#phoneNumLegal1').val()=="") ){
+              if(($('#emailLegal').val()==="") || ($('#phoneCodeLegal1').val()==="") ||  ($('#phoneNumLegal1').val()=="")) {
                 return;
               }
-              alert("Отправить ваши данные");
+              alert("Отправить ваши данные и отправить ваш пароль на почту");
               let form = document.querySelector("#registration");
-               form.action="http://localhost:8082/registration";
+               form.action="http://localhost:8080/axelor-sanarip-tamga-6.3.0/registration";
                form.method = "POST";
                form.submit();
             }
